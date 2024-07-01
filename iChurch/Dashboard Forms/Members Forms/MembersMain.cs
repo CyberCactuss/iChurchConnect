@@ -24,6 +24,7 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
             try
             {
                 string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "iChurchConnect.accdb");
+
                 AccessConnection dbConnection = new AccessConnection(dbPath);
 
                 dbConnection.OpenConnection();
@@ -32,6 +33,41 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
                 OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, dbConnection.GetConnection());
                 DataTable dataTable = new DataTable();
                 dataAdapter.Fill(dataTable);
+
+                
+                guna2DataGridView1.Columns.Clear();
+
+                
+                guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    HeaderText = "Full Name",
+                    DataPropertyName = "FullName",
+                    Name = "FullName"
+                });
+                guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    HeaderText = "Age",
+                    DataPropertyName = "Age",
+                    Name = "Age"
+                });
+                guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    HeaderText = "Sex",
+                    DataPropertyName = "Sex",
+                    Name = "Sex"
+                });
+                guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    HeaderText = "Contact",
+                    DataPropertyName = "Contact",
+                    Name = "Contact"
+                });
+                guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    HeaderText = "Email",
+                    DataPropertyName = "Email",
+                    Name = "Email"
+                });
 
                 guna2DataGridView1.AutoGenerateColumns = false;
                 guna2DataGridView1.DataSource = dataTable;
@@ -43,6 +79,7 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
                 MessageBox.Show($"Error loading member data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void MembersMain_FormClosing(object sender, FormClosingEventArgs e)
         {

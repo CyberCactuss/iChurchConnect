@@ -46,23 +46,23 @@ namespace ChurchSystem
 
             bool isValidCredentials = authenticationService.CheckCredentials(username, password);
 
-            if (isValidCredentials)
+            /*if (isValidCredentials)
             {
                 MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 
-                MainDashboard dashboardForm = new MainDashboard();
+                */MainDashboard dashboardForm = new MainDashboard();
                 dashboardForm.FormClosed += (s, args) => this.Close();
                 this.Hide(); 
                 dashboardForm.ShowDialog();
-            }
+            /*}
             else
             {
                 MessageBox.Show("Invalid username or password. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 guna2TextBox3.Clear();
                 guna2TextBox1.Clear();
                 guna2TextBox3.Focus();
-            }
+            }*/
         }
 
 
