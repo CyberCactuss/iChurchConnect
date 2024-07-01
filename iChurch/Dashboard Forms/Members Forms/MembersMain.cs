@@ -4,6 +4,7 @@ using System.Data.OleDb;
 using System.Drawing;
 using System.Windows.Forms;
 using iChurch.DBAccess.Connection;
+using iChurch.Dashboard_Forms.Members_Forms;
 
 namespace ChurchSystem.Dashboard_Forms.MembersFiles
 {
@@ -17,6 +18,15 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
         private void MembersMain_Load(object sender, EventArgs e)
         {
             LoadMembersData();
+            AdjustDataGridViewAppearance();
+        }
+
+        private void AdjustDataGridViewAppearance()
+        {
+            
+            guna2DataGridView1.Columns["ID"].FillWeight = 20;
+            guna2DataGridView1.Columns["Age"].FillWeight = 50;
+            guna2DataGridView1.Columns["Sex"].FillWeight = 70;
         }
 
         private void LoadMembersData()
@@ -29,10 +39,20 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
 
                 dbConnection.OpenConnection();
 
-                string query = "SELECT FullName, Age, Sex, Contact, Email FROM Members";
+                string query = "SELECT ID, FullName, Age, Sex, Contact, Email FROM Members";
                 OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, dbConnection.GetConnection());
                 DataTable dataTable = new DataTable();
                 dataAdapter.Fill(dataTable);
+
+                
+                Dictionary<string, float> fillWeights = new Dictionary<string, float>();
+                foreach (DataGridViewColumn column in guna2DataGridView1.Columns)
+                {
+                    if (column is DataGridViewTextBoxColumn textColumn)
+                    {
+                        fillWeights[column.Name] = textColumn.FillWeight;
+                    }
+                }
 
                 
                 guna2DataGridView1.Columns.Clear();
@@ -40,34 +60,60 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
                 
                 guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn
                 {
+                    HeaderText = "ID",
+                    DataPropertyName = "ID",
+                    Name = "ID",
+                    FillWeight = fillWeights.ContainsKey("ID") ? fillWeights["ID"] : 20
+                });
+
+                guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+                {
                     HeaderText = "Full Name",
                     DataPropertyName = "FullName",
-                    Name = "FullName"
+                    Name = "FullName",
+                    FillWeight = fillWeights.ContainsKey("FullName") ? fillWeights["FullName"] : 100 
                 });
+
                 guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     HeaderText = "Age",
                     DataPropertyName = "Age",
-                    Name = "Age"
+                    Name = "Age",
+                    FillWeight = fillWeights.ContainsKey("Age") ? fillWeights["Age"] : 50
                 });
+
                 guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     HeaderText = "Sex",
                     DataPropertyName = "Sex",
-                    Name = "Sex"
+                    Name = "Sex",
+                    FillWeight = fillWeights.ContainsKey("Sex") ? fillWeights["Sex"] : 70
                 });
+
                 guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     HeaderText = "Contact",
                     DataPropertyName = "Contact",
-                    Name = "Contact"
+                    Name = "Contact",
+                    FillWeight = fillWeights.ContainsKey("Contact") ? fillWeights["Contact"] : 100
                 });
+
                 guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     HeaderText = "Email",
                     DataPropertyName = "Email",
-                    Name = "Email"
+                    Name = "Email",
+                    FillWeight = fillWeights.ContainsKey("Email") ? fillWeights["Email"] : 100 
                 });
+
+                DataGridViewButtonColumn viewButtonColumn = new DataGridViewButtonColumn
+                {
+                    HeaderText = "Information",
+                    Name = "ViewInfo",
+                    Text = "View",
+                    UseColumnTextForButtonValue = true
+                };
+                guna2DataGridView1.Columns.Add(viewButtonColumn);
 
                 guna2DataGridView1.AutoGenerateColumns = false;
                 guna2DataGridView1.DataSource = dataTable;
@@ -94,10 +140,52 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
 
         private void guna2Button2_Click(object sender, EventArgs e) // DELETE BUTTON
         {
+            if (guna2DataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = guna2DataGridView1.SelectedRows[0];
+                int memberId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
+
+                DialogResult result = MessageBox.Show($"Are you sure you want to delete the member with ID {memberId}?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    DeleteMember(memberId);
+                    LoadMembersData(); 
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a member to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
-        private void guna2Button3_Click(object sender, EventArgs e) // UPDATE BUTTON
+        private void DeleteMember(int memberId)
         {
+            try
+            {
+                string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "iChurchConnect.accdb");
+
+                AccessConnection dbConnection = new AccessConnection(dbPath);
+
+                dbConnection.OpenConnection();
+
+                string query = "DELETE FROM Members WHERE ID = ?";
+                OleDbCommand command = new OleDbCommand(query, dbConnection.GetConnection());
+                command.Parameters.AddWithValue("@ID", memberId);
+                command.ExecuteNonQuery();
+
+                dbConnection.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting member data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void guna2Button3_Click(object sender, EventArgs e) // EDIT BUTTON
+        {
+            EditMember add = new EditMember();
+            add.ShowDialog();
             LoadMembersData();
         }
 
