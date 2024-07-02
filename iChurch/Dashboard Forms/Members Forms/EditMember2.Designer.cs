@@ -108,6 +108,7 @@
             guna2Button2.TabIndex = 66;
             guna2Button2.Text = "Cancel";
             guna2Button2.TextOffset = new Point(-5, 0);
+            guna2Button2.Click += guna2Button2_Click_1;
             // 
             // textBox1
             // 
@@ -308,6 +309,7 @@
             Controls.Add(label12);
             FormBorderStyle = FormBorderStyle.None;
             Name = "EditMember2";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "EditMember2";
             guna2GradientPanel1.ResumeLayout(false);
             guna2GradientPanel2.ResumeLayout(false);

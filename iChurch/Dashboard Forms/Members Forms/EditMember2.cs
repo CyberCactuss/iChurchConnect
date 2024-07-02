@@ -1,20 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Guna.UI2.WinForms;
+using iChurch.DBAccess.Connection;
+using System;
+using System.Data.OleDb;
 using System.Windows.Forms;
 
 namespace iChurch.Dashboard_Forms.Members_Forms
 {
     public partial class EditMember2 : Form
     {
+        private int MemberId { get; set; }
+        private string MemberName { get; set; }
+        private string MemberEmail { get; set; }
+        private int MemberAge { get; set; }
+        private string MemberSex { get; set; }
+        private string MemberContact { get; set; }
+        private string MemberAddress { get; set; }
+        private DateTime MemberBirthday { get; set; }
+
         public EditMember2()
         {
             InitializeComponent();
+        }
+
+        public EditMember2(int memberId, string name, string email, int age, string sex, string contact, string address, DateTime birthday)
+        {
+            InitializeComponent();
+
+            MemberId = memberId;
+            MemberName = name;
+            MemberEmail = email;
+            MemberAge = age;
+            MemberSex = sex;
+            MemberContact = contact;
+            MemberAddress = address;
+            MemberBirthday = birthday;
+
+            textBox3.Text = contact;
+            textBox1.Text = address;
+            guna2DateTimePicker1.Value = birthday;
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e) // CONTACT
@@ -32,9 +55,41 @@ namespace iChurch.Dashboard_Forms.Members_Forms
 
         }
 
-        private void guna2Button1_Click(object sender, EventArgs e)
+        private void guna2Button1_Click(object sender, EventArgs e) // SAVE BUTTON
         {
+            try
+            {
+                string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "iChurchConnect.accdb");
 
+                AccessConnection dbConnection = new AccessConnection(dbPath);
+                dbConnection.OpenConnection();
+
+                string query = "UPDATE Members SET FullName = ?, Email = ?, Age = ?, Sex = ?, Contact = ?, Address = ?, Birthday = ? WHERE ID = ?";
+                OleDbCommand command = new OleDbCommand(query, dbConnection.GetConnection());
+                command.Parameters.AddWithValue("@FullName", MemberName);
+                command.Parameters.AddWithValue("@Email", MemberEmail);
+                command.Parameters.AddWithValue("@Age", MemberAge);
+                command.Parameters.AddWithValue("@Sex", MemberSex);
+                command.Parameters.AddWithValue("@Contact", textBox3.Text);
+                command.Parameters.AddWithValue("@Address", textBox1.Text);
+                command.Parameters.AddWithValue("@Birthday", guna2DateTimePicker1.Value);
+                command.Parameters.AddWithValue("@ID", MemberId);
+
+                command.ExecuteNonQuery();
+
+                dbConnection.CloseConnection();
+                MessageBox.Show("Member data updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating member data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void guna2Button2_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

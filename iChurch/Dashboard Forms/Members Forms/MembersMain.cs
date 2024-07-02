@@ -184,9 +184,53 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
 
         private void guna2Button3_Click(object sender, EventArgs e) // EDIT BUTTON
         {
-            EditMember add = new EditMember();
-            add.ShowDialog();
-            LoadMembersData();
+            if (guna2DataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = guna2DataGridView1.SelectedRows[0];
+                int memberId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
+                string name = selectedRow.Cells["FullName"].Value.ToString();
+                string email = selectedRow.Cells["Email"].Value.ToString();
+                int age = Convert.ToInt32(selectedRow.Cells["Age"].Value);
+                string sex = selectedRow.Cells["Sex"].Value.ToString();
+                string contact = selectedRow.Cells["Contact"].Value.ToString();
+
+                string address = "";
+                DateTime birthday = DateTime.MinValue;
+
+                try
+                {
+                    string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "iChurchConnect.accdb");
+                    AccessConnection dbConnection = new AccessConnection(dbPath);
+                    dbConnection.OpenConnection();
+
+                    string query = "SELECT Address, Birthday FROM Members WHERE ID = ?";
+                    OleDbCommand command = new OleDbCommand(query, dbConnection.GetConnection());
+                    command.Parameters.AddWithValue("@ID", memberId);
+                    OleDbDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        address = reader["Address"].ToString();
+                        birthday = DateTime.Parse(reader["Birthday"].ToString());
+                    }
+
+                    reader.Close();
+                    dbConnection.CloseConnection();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error fetching member data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                EditMember editMember = new EditMember(memberId, name, email, age, sex, contact, address, birthday);
+                editMember.ShowDialog();
+                LoadMembersData(); // Refresh data after editing a member
+            }
+            else
+            {
+                MessageBox.Show("Please select a member to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void guna2DataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)

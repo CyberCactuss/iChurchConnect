@@ -344,6 +344,7 @@
             Controls.Add(guna2GradientPanel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "EditMember";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "EditMember";
             guna2GradientPanel2.ResumeLayout(false);
             guna2GradientPanel1.ResumeLayout(false);
