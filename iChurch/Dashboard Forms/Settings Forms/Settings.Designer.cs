@@ -150,6 +150,7 @@
             guna2GradientButton1.Size = new Size(140, 47);
             guna2GradientButton1.TabIndex = 19;
             guna2GradientButton1.Text = "Update";
+            guna2GradientButton1.Click += guna2GradientButton1_Click;
             // 
             // guna2GradientButton2
             // 
@@ -177,6 +178,7 @@
             guna2GradientButton2.Size = new Size(140, 47);
             guna2GradientButton2.TabIndex = 20;
             guna2GradientButton2.Text = "Update";
+            guna2GradientButton2.Click += guna2GradientButton2_Click;
             // 
             // guna2GradientButton3
             // 
