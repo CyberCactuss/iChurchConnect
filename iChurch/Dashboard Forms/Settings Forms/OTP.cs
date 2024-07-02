@@ -32,6 +32,11 @@ namespace iChurch.Dashboard_Forms.Settings_Forms
                 // Close the form
                 this.Close();
             }
-        }   
+        }
+
+        private void guna2GradientButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

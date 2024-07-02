@@ -178,6 +178,7 @@
             guna2GradientButton1.Size = new Size(192, 57);
             guna2GradientButton1.TabIndex = 24;
             guna2GradientButton1.Text = "Cancel";
+            guna2GradientButton1.Click += guna2GradientButton1_Click;
             // 
             // OTP
             // 
