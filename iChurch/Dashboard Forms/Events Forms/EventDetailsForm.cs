@@ -1,7 +1,10 @@
-﻿using System;
+﻿using iChurch.DBAccess.Connection;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -13,30 +16,100 @@ namespace ChurchSystem.Dashboard_Forms.Members
 {
     public partial class EventDetailsForm : Form
     {
-
-
         private string eventName;
-        private string eventDateTime;
+        private string eventType;
+        private string eventVenue;
+        private string eventTime;
         private DateTime selectedDate;
         private Color eventColor;
         private Panel panel5;
+        private ContextMenuStrip optionsMenu;
+        private Button newButton;
+        private AccessConnection dbConnection;
+        private int eventId;
 
-
-        public TextBox EventNameTextBox => txteventname;
-        public TextBox EventDateTextBox => txtdate;
-        public ComboBox EventTimeComboBox => cmbtime;
-
-
-
-        public EventDetailsForm(DateTime date, Color eventColor, Panel panel5)
+        public EventDetailsForm(DateTime selectedDate, Color eventColor, Panel panel5)
         {
             InitializeComponent();
-            selectedDate = date;
+
+            this.selectedDate = selectedDate;
             this.eventColor = eventColor;
             this.panel5 = panel5;
+
             txtdate.Text = selectedDate.ToString("yyyy-MM-dd");
             SetSelectedDate(selectedDate);
 
+            optionsMenu = new ContextMenuStrip();
+            ToolStripMenuItem menuItem1 = new ToolStripMenuItem("Edit");
+            ToolStripMenuItem menuItem2 = new ToolStripMenuItem("Delete");
+            ToolStripMenuItem menuItem3 = new ToolStripMenuItem("Save");
+
+            optionsMenu.Items.Add(menuItem1);
+            optionsMenu.Items.Add(menuItem2);
+            optionsMenu.Items.Add(menuItem3);
+
+            button2.ContextMenuStrip = optionsMenu;
+            button2.Click += button2_Click;
+        }
+
+
+        public EventDetailsForm(int eventId, string eventName, string eventType, string eventVenue, string eventTime, DateTime eventDate, Color eventColor, Panel panel5)
+        {
+            InitializeComponent();
+
+            this.eventId = eventId;
+            this.eventName = eventName;
+            this.eventType = eventType;
+            this.eventVenue = eventVenue;
+            this.eventTime = eventTime;
+            this.selectedDate = eventDate;
+            this.eventColor = eventColor;
+            this.panel5 = panel5;
+
+            txtdate.Text = selectedDate.ToString("yyyy-MM-dd");
+            txteventname.Text = eventName;
+            txttype.Text = eventType;
+            txtvenue.Text = eventVenue;
+            cmbtime.Text = eventTime;
+
+            SetSelectedDate(selectedDate);
+
+            optionsMenu = new ContextMenuStrip();
+            ToolStripMenuItem menuItem1 = new ToolStripMenuItem("Edit");
+            ToolStripMenuItem menuItem2 = new ToolStripMenuItem("Delete");
+            ToolStripMenuItem menuItem3 = new ToolStripMenuItem("Save");
+
+            optionsMenu.Items.Add(menuItem1);
+            optionsMenu.Items.Add(menuItem2);
+            optionsMenu.Items.Add(menuItem3);
+
+            button2.ContextMenuStrip = optionsMenu;
+            button2.Click += button2_Click;
+        }
+
+
+        private void DeleteEvent_Click(object sender, EventArgs e)
+        {
+
+            Button eventButton = FindEventButton(panel5);
+            if (eventButton != null)
+            {
+                panel5.Controls.Remove(eventButton);
+            }
+            this.Close();
+        }
+
+
+        private Button FindEventButton(Panel panel)
+        {
+            foreach (Control control in panel.Controls)
+            {
+                if (control is Button button && button.Tag == this)
+                {
+                    return button;
+                }
+            }
+            return null;
         }
 
         public void SetSelectedDate(DateTime date)
@@ -56,8 +129,6 @@ namespace ChurchSystem.Dashboard_Forms.Members
             SetSelectedDate(selectedDate);
         }
 
-        private static int nextButtonTop = 10;
-
         private void btnadd_Click_1(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Do you want to create this event?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -65,80 +136,62 @@ namespace ChurchSystem.Dashboard_Forms.Members
             if (result == DialogResult.OK)
             {
                 string eventName = txteventname.Text;
-                string eventDate = txtdate.Text;
-                string eventTime = cmbtime.SelectedItem?.ToString();
-                string eventVenue = txtvenue.Text;
                 string eventType = txttype.Text;
-                Color eventColor = this.eventColor;
+                string eventVenue = txtvenue.Text;
+                string eventTimeString = cmbtime.SelectedItem?.ToString(); // Ensure eventTimeString is not null
+                DateTime eventDate;
 
-                CreateEventButton(eventName, eventDate, eventTime, eventVenue, eventType, eventColor);
+                bool isValidDate = DateTime.TryParse(txtdate.Text, out eventDate);
+                DateTime eventTime;
 
-                this.Close();
-            }
-        }
-
-        private void CreateEventButton(string eventName, string eventDate, string eventTime, string eventVenue, string eventType, Color eventColor)
-        {
-            Button eventButton = new Button();
-            eventButton.Text = $"{eventName}\n{eventDate} {eventTime}\n{eventVenue}\n{eventType}";
-            eventButton.Size = new Size(590, 100);
-            eventButton.Location = new Point(10, nextButtonTop);
-            eventButton.BackColor = eventColor;
-            eventButton.Font = new Font("Arial", 12, FontStyle.Regular | FontStyle.Italic);
-
-            panel5.Controls.Add(eventButton);
-            nextButtonTop += eventButton.Height + 10;
-
-            panel5.ScrollControlIntoView(eventButton);
-            eventButton.Click += (sender, e) =>
-            {
-
-                EventDetailsForm eventDetailsForm = new EventDetailsForm(selectedDate, eventColor, panel5);
-                eventDetailsForm.EventNameTextBox.Text = eventName;
-                eventDetailsForm.EventDateTextBox.Text = eventDate;
-                eventDetailsForm.EventTimeComboBox.SelectedItem = eventTime;
-                eventDetailsForm.ShowDialog();
-
-            };
-
-        }
-
-
-        private void CreateEvent(Color eventColor)
-        {
-            string eventName = EventNameTextBox.Text;
-            string eventDate = EventDateTextBox.Text;
-            string eventTime = EventTimeComboBox.SelectedItem?.ToString();
-            if (eventName != null && eventDate != null && eventTime != null)
-            {
-                string eventDateTime = $"{eventDate}, {eventTime}";
-
-
-                Button newButton = new Button();
-                newButton.Text = $"{eventName}\n{eventDateTime}";
-                newButton.Font = new Font("Palatino Linotype", 18, FontStyle.Regular);
-                newButton.Width = 600;
-                newButton.Height = 90;
-                newButton.FlatStyle = FlatStyle.Flat;
-                newButton.TextAlign = ContentAlignment.MiddleLeft;
-                newButton.FlatStyle = FlatStyle.Flat;
-                newButton.Margin = new Padding(5);
-
-                newButton.BackColor = eventColor;
-                newButton.Click += (sender, e) =>
+                if (!isValidDate || string.IsNullOrEmpty(eventTimeString) || !DateTime.TryParseExact(eventTimeString, "h:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out eventTime))
                 {
+                    MessageBox.Show("Invalid date or time. Please check the values.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-                    EventDetailsForm eventDetailsForm = new EventDetailsForm(selectedDate, eventColor, panel5);
-                    eventDetailsForm.EventNameTextBox.Text = eventName;
-                    eventDetailsForm.EventDateTextBox.Text = eventDate;
-                    eventDetailsForm.EventTimeComboBox.SelectedItem = eventTime;
-                    eventDetailsForm.ShowDialog();
-                };
+                // Combine the date and time
+                eventDate = eventDate.Date.Add(eventTime.TimeOfDay);
 
-                panel5.Controls.Add(newButton);
+                string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "iChurchConnect.accdb");
+                AccessConnection dbConnection = new AccessConnection(dbPath);
+
+                string query = "INSERT INTO Events (EventName, EventType, Venue, [StartTime], [Date]) " +
+                               "VALUES (@eventName, @eventType, @eventVenue, @eventTime, @eventDate)";
+
+                try
+                {
+                    dbConnection.OpenConnection();
+                    OleDbCommand cmd = new OleDbCommand(query, dbConnection.GetConnection());
+                    cmd.Parameters.AddWithValue("@eventName", eventName);
+                    cmd.Parameters.AddWithValue("@eventType", eventType);
+                    cmd.Parameters.AddWithValue("@eventVenue", eventVenue);
+                    cmd.Parameters.AddWithValue("@eventTime", eventTime.ToString("h:mm tt")); // Store time as string
+                    cmd.Parameters.AddWithValue("@eventDate", eventDate.ToString("yyyy-MM-dd")); // Store date as string
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Event successfully created and saved to database.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        OnEventAdded(); // Raise the event
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to save event to database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    dbConnection.CloseConnection();
+                }
             }
         }
-
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -154,16 +207,22 @@ namespace ChurchSystem.Dashboard_Forms.Members
             }
         }
 
-
-
         private void button2_Click(object sender, EventArgs e)
         {
-            contextMenuStrip1.Show(button2, new Point(0, button2.Height));
+            optionsMenu.Show(button2, new Point(0, button2.Height));
+        }
+
+        public event EventHandler EventAdded;
+
+        protected virtual void OnEventAdded()
+        {
+            EventAdded?.Invoke(this, EventArgs.Empty);
         }
 
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
-
         }
+
+
     }
 }

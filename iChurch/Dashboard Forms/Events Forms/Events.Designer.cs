@@ -52,11 +52,14 @@
             label10 = new Label();
             panel4 = new Panel();
             panel5 = new Panel();
+            dataGridViewEvents = new DataGridView();
             panel6 = new Panel();
             flowLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel4.SuspendLayout();
+            panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewEvents).BeginInit();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -67,7 +70,6 @@
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(316, 228);
             flowLayoutPanel1.TabIndex = 7;
-
             // 
             // button1
             // 
@@ -291,11 +293,20 @@
             // panel5
             // 
             panel5.BackColor = Color.White;
+            panel5.Controls.Add(dataGridViewEvents);
             panel5.Location = new Point(306, 210);
             panel5.Name = "panel5";
             panel5.Size = new Size(607, 487);
             panel5.TabIndex = 24;
             panel5.Paint += panel5_Paint;
+            // 
+            // dataGridViewEvents
+            // 
+            dataGridViewEvents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewEvents.Location = new Point(3, 0);
+            dataGridViewEvents.Name = "dataGridViewEvents";
+            dataGridViewEvents.Size = new Size(601, 487);
+            dataGridViewEvents.TabIndex = 0;
             // 
             // panel6
             // 
@@ -339,6 +350,8 @@
             panel2.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewEvents).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -368,5 +381,6 @@
         private TextBox textBox2;
         private Panel panel5;
         private Panel panel6;
+        private DataGridView dataGridViewEvents;
     }
 }
