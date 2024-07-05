@@ -23,8 +23,7 @@ namespace ChurchSystem
         {
             InitializeComponent();
             string exeDirectory = Path.GetDirectoryName(Application.ExecutablePath);
-            string dbFilePath = Path.Combine(exeDirectory, "iChurchConnect.accdb");
-            dbConnection = new AccessConnection(dbFilePath);
+            dbConnection = new AccessConnection();
             authenticationService = new AccessAuthentication(dbConnection.GetConnection());
         }
 

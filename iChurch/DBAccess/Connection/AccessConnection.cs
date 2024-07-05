@@ -5,9 +5,9 @@ namespace iChurch.DBAccess.Connection
     public class AccessConnection
     {
         private OleDbConnection connection;
-
-        // Constructor with a parameter for the database file path
-        public AccessConnection(string databaseFile)
+        private string databaseFile = @"..\..\..\..\Database\iChurchConnect.accdb";
+        
+        public AccessConnection()
         {
             string connectionString = $@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={databaseFile};";
             connection = new OleDbConnection(connectionString);

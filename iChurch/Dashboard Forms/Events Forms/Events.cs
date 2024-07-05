@@ -75,9 +75,7 @@ namespace ChurchSystem.Dashboard_Forms
         {
             try
             {
-                string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "iChurchConnect.accdb");
-
-                AccessConnection dbConnection = new AccessConnection(dbPath);
+                AccessConnection dbConnection = new AccessConnection();
 
                 dbConnection.OpenConnection();
 

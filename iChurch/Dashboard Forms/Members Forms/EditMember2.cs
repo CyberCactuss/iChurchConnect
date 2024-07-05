@@ -59,9 +59,8 @@ namespace iChurch.Dashboard_Forms.Members_Forms
         {
             try
             {
-                string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "iChurchConnect.accdb");
 
-                AccessConnection dbConnection = new AccessConnection(dbPath);
+                AccessConnection dbConnection = new AccessConnection();
                 dbConnection.OpenConnection();
 
                 string query = "UPDATE Members SET FullName = ?, Email = ?, Age = ?, Sex = ?, Contact = ?, Address = ?, Birthday = ? WHERE ID = ?";

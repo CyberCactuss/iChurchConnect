@@ -5,9 +5,9 @@ public class AccessConnectionWrapper : IDisposable
 {
     private AccessConnection connection;
 
-    public AccessConnectionWrapper(string connectionString)
+    public AccessConnectionWrapper()
     {
-        connection = new AccessConnection(connectionString);
+        connection = new AccessConnection();
         connection.OpenConnection();
     }
 

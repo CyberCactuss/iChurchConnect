@@ -42,8 +42,7 @@ namespace ChurchSystem.Dashboard_Forms.Members
 
         private void LoadEventDetails()
         {
-            string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "iChurchConnect.accdb");
-            dbConnection = new AccessConnection(dbPath);
+            dbConnection = new AccessConnection();
 
             string query = "SELECT EventName, EventType, Venue, [StartTime], [EndTime], [Date] " +
                            "FROM Events " +
@@ -213,10 +212,8 @@ namespace ChurchSystem.Dashboard_Forms.Members
                     MessageBox.Show("Invalid end time. Please check the value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-
-                string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "iChurchConnect.accdb");
-                dbConnection = new AccessConnection(dbPath);
+                
+                dbConnection = new AccessConnection();
 
                 string query = "INSERT INTO Events (EventName, EventType, Venue, [StartTime], [EndTime], [Date]) " +
                                "VALUES (@eventName, @eventType, @eventVenue, @startTime, @endTime, @eventDate)";
