@@ -37,8 +37,10 @@ namespace ChurchSystem.Dashboard_Forms
             btnprevious.Click += btnPrevious_Click;
             LoadEventsData();
             dataGridViewEvents.CellClick += dataGridViewEvents_CellClick;
+            refreshbtn.Click += refreshbtn_Click;
 
         }
+
 
         private void Events_Load(object sender, EventArgs e)
         {
@@ -53,14 +55,16 @@ namespace ChurchSystem.Dashboard_Forms
             dataGridViewEvents.Columns["EventName"].FillWeight = 100;
             dataGridViewEvents.Columns["EventType"].FillWeight = 70;
             dataGridViewEvents.Columns["Venue"].FillWeight = 100;
-            dataGridViewEvents.Columns["Time"].FillWeight = 50;
+            dataGridViewEvents.Columns["StartTime"].FillWeight = 50;
+            dataGridViewEvents.Columns["End Time"].FillWeight = 50;
             dataGridViewEvents.Columns["Date"].FillWeight = 70;
 
             dataGridViewEvents.Columns["ID"].Width = 50; // Adjust the width as needed
             dataGridViewEvents.Columns["EventName"].Width = 200;
             dataGridViewEvents.Columns["EventType"].Width = 100;
             dataGridViewEvents.Columns["Venue"].Width = 150;
-            dataGridViewEvents.Columns["Time"].Width = 80;
+            dataGridViewEvents.Columns["StartTime"].Width = 80;
+            dataGridViewEvents.Columns["End Time"].Width = 80;
             dataGridViewEvents.Columns["Date"].Width = 100;
 
             // Configure Time column to display time in "h:mm tt" format
@@ -77,7 +81,7 @@ namespace ChurchSystem.Dashboard_Forms
 
                 dbConnection.OpenConnection();
 
-                string query = "SELECT ID, EventName, EventType, Venue, Time, Date FROM Events";
+                string query = "SELECT ID, EventName, EventType, Venue, StartTime, EndTime, Date FROM Events";
                 OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, dbConnection.GetConnection());
                 DataTable dataTable = new DataTable();
                 dataAdapter.Fill(dataTable);
@@ -92,13 +96,7 @@ namespace ChurchSystem.Dashboard_Forms
                 dataGridViewEvents.Columns.Clear();
 
                 // Add columns to dataGridViewEvents
-                dataGridViewEvents.Columns.Add(new DataGridViewTextBoxColumn
-                {
-                    HeaderText = "ID",
-                    DataPropertyName = "ID",
-                    Name = "ID",
-                    FillWeight = 20
-                });
+
 
                 dataGridViewEvents.Columns.Add(new DataGridViewTextBoxColumn
                 {
@@ -126,9 +124,18 @@ namespace ChurchSystem.Dashboard_Forms
 
                 dataGridViewEvents.Columns.Add(new DataGridViewTextBoxColumn
                 {
-                    HeaderText = "Time",
-                    DataPropertyName = "Time",
-                    Name = "Time",
+                    HeaderText = "Start Time",
+                    DataPropertyName = "StartTime",
+                    Name = "StartTime",
+                    FillWeight = 50,
+                    ValueType = typeof(DateTime) // Set ValueType to DateTime
+                });
+
+                dataGridViewEvents.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    HeaderText = "End Time",
+                    DataPropertyName = "EndTime",
+                    Name = "EndTime",
                     FillWeight = 50,
                     ValueType = typeof(DateTime) // Set ValueType to DateTime
                 });
@@ -277,53 +284,96 @@ namespace ChurchSystem.Dashboard_Forms
 
         private void dataGridViewEvents_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Check if a cell is clicked and it's not the header row
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 // Get the selected event details from the DataGridView
                 DataGridViewRow selectedRow = dataGridViewEvents.Rows[e.RowIndex];
-                int eventId = (int)selectedRow.Cells["ID"].Value;
                 string eventName = selectedRow.Cells["EventName"].Value.ToString();
                 string eventType = selectedRow.Cells["EventType"].Value.ToString();
                 string venue = selectedRow.Cells["Venue"].Value.ToString();
-                string time = selectedRow.Cells["Time"].Value.ToString();
+                string starttime = FormatTimeValue(selectedRow.Cells["StartTime"]);
+                string endtime = FormatTimeValue(selectedRow.Cells["EndTime"]);
                 DateTime eventDate = (DateTime)selectedRow.Cells["Date"].Value;
 
                 // Open EventDetailsForm with selected event details
-                OpenEventDetailsForm(eventId, eventName, eventType, venue, time, eventDate);
+                OpenEventDetailsForm(eventName, eventType, venue, starttime, endtime, eventDate);
             }
         }
+        private string FormatTimeValue(DataGridViewCell cell)
+        {
+            if (cell.Value != null)
+            {
+                DateTime dateTimeValue;
+                if (DateTime.TryParse(cell.Value.ToString(), out dateTimeValue))
+                {
+                    return dateTimeValue.ToString("hh:mm tt");
+                }
+            }
+            return string.Empty;
+        }
+
 
         private void DataGridViewEvents_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            // Check if it's the column you want to format (e.g., "Time" column)
-            if (dataGridViewEvents.Columns[e.ColumnIndex].Name == "Time" && e.Value != null && e.Value != DBNull.Value)
+            if (dataGridViewEvents.Columns[e.ColumnIndex].Name == "StartTime" ||
+                dataGridViewEvents.Columns[e.ColumnIndex].Name == "EndTime")
             {
-                // Format the DateTime value to display only time
-                if (DateTime.TryParse(e.Value.ToString(), out DateTime timeValue))
+                if (e.Value != null)
                 {
-                    e.Value = timeValue.ToString("h:mm tt");
-                    e.FormattingApplied = true; // Set to true to indicate that the formatting was applied
+                    DateTime dateTimeValue;
+                    if (DateTime.TryParse(e.Value.ToString(), out dateTimeValue))
+                    {
+                        e.Value = dateTimeValue.ToString("hh:mm tt");
+                    }
                 }
             }
         }
 
-        private void OpenEventDetailsForm(int eventId, string eventName, string eventType, string venue, string time, DateTime eventDate)
+        private void OpenEventDetailsForm(string eventName, string eventType, string venue, string startTime, string endTime, DateTime eventDate)
         {
-            Color eventColor = GenerateRandomColor();
-            EventDetailsForm eventDetailsForm = new EventDetailsForm(eventId, eventName, eventType, venue, time, eventDate, eventColor, panel5);
+            Color eventColor = GenerateRandomColor(); // Or any method you use to generate the event color
+            Panel panel5 = this.panel5; // Assuming panel5 is a member of the class
+            EventDetailsForm eventDetailsForm = new EventDetailsForm(eventName, eventType, venue, startTime, endTime, eventDate, eventColor, panel5);
+
+       
             eventDetailsForm.ShowDialog();
         }
+
 
         private void button3_Click(object sender, EventArgs e)
         {
 
         }
 
+      
 
         private void panel5_Paint(object sender, PaintEventArgs e)
         {
             panel5.AutoScroll = true;
         }
+
+        private void refreshbtn_Click(object sender, EventArgs e)
+        {
+            string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "iChurchConnect.accdb");
+            string query = "SELECT ID, EventName, EventType, Venue, StartTime, EndTime, Date FROM Events";
+
+            try
+            {
+                using (OleDbConnection connection = new OleDbConnection($"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={dbPath};"))
+                {
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(query, connection);
+                    DataTable eventsTable = new DataTable();
+                    adapter.Fill(eventsTable);
+
+                    dataGridViewEvents.DataSource = eventsTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading events: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
     }
 }

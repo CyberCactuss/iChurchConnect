@@ -82,6 +82,7 @@
             guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges8;
             guna2GradientPanel1.Size = new Size(655, 69);
             guna2GradientPanel1.TabIndex = 0;
+            guna2GradientPanel1.Paint += guna2GradientPanel1_Paint;
             // 
             // guna2Separator1
             // 

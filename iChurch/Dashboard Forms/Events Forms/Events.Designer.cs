@@ -45,6 +45,7 @@
             panel1 = new Panel();
             label9 = new Label();
             panel2 = new Panel();
+            refreshbtn = new Button();
             button3 = new Button();
             textBox2 = new TextBox();
             panel3 = new Panel();
@@ -52,6 +53,8 @@
             label10 = new Label();
             panel4 = new Panel();
             panel5 = new Panel();
+            button5 = new Button();
+            button4 = new Button();
             dataGridViewEvents = new DataGridView();
             panel6 = new Panel();
             flowLayoutPanel1.SuspendLayout();
@@ -223,12 +226,23 @@
             // panel2
             // 
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(refreshbtn);
             panel2.Controls.Add(button3);
             panel2.Controls.Add(textBox2);
             panel2.Location = new Point(306, 168);
             panel2.Name = "panel2";
             panel2.Size = new Size(606, 42);
             panel2.TabIndex = 21;
+            // 
+            // refreshbtn
+            // 
+            refreshbtn.BackgroundImage = (Image)resources.GetObject("refreshbtn.BackgroundImage");
+            refreshbtn.BackgroundImageLayout = ImageLayout.Stretch;
+            refreshbtn.Location = new Point(0, 0);
+            refreshbtn.Name = "refreshbtn";
+            refreshbtn.Size = new Size(49, 42);
+            refreshbtn.TabIndex = 3;
+            refreshbtn.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
@@ -293,6 +307,8 @@
             // panel5
             // 
             panel5.BackColor = Color.White;
+            panel5.Controls.Add(button5);
+            panel5.Controls.Add(button4);
             panel5.Controls.Add(dataGridViewEvents);
             panel5.Location = new Point(306, 210);
             panel5.Name = "panel5";
@@ -300,12 +316,31 @@
             panel5.TabIndex = 24;
             panel5.Paint += panel5_Paint;
             // 
+            // button5
+            // 
+            button5.Location = new Point(514, 444);
+            button5.Name = "button5";
+            button5.Size = new Size(82, 35);
+            button5.TabIndex = 2;
+            button5.Text = "Delete";
+            button5.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(426, 444);
+            button4.Name = "button4";
+            button4.Size = new Size(82, 35);
+            button4.TabIndex = 1;
+            button4.Text = "Edit";
+            button4.UseVisualStyleBackColor = true;
+            // 
             // dataGridViewEvents
             // 
+            dataGridViewEvents.BackgroundColor = Color.White;
             dataGridViewEvents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewEvents.Location = new Point(3, 0);
+            dataGridViewEvents.Location = new Point(0, -1);
             dataGridViewEvents.Name = "dataGridViewEvents";
-            dataGridViewEvents.Size = new Size(601, 487);
+            dataGridViewEvents.Size = new Size(604, 439);
             dataGridViewEvents.TabIndex = 0;
             // 
             // panel6
@@ -382,5 +417,8 @@
         private Panel panel5;
         private Panel panel6;
         private DataGridView dataGridViewEvents;
+        private Button button5;
+        private Button button4;
+        private Button refreshbtn;
     }
 }

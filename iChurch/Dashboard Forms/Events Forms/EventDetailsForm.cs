@@ -1,15 +1,9 @@
 ﻿using iChurch.DBAccess.Connection;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.Common;
 using System.Data.OleDb;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ChurchSystem.Dashboard_Forms.Members
@@ -19,14 +13,17 @@ namespace ChurchSystem.Dashboard_Forms.Members
         private string eventName;
         private string eventType;
         private string eventVenue;
-        private string eventTime;
+        private string startTime;
+        private string endTime;
         private DateTime selectedDate;
         private Color eventColor;
         private Panel panel5;
         private ContextMenuStrip optionsMenu;
         private Button newButton;
+        private string eventId;
         private AccessConnection dbConnection;
-        private int eventId;
+
+
 
         public EventDetailsForm(DateTime selectedDate, Color eventColor, Panel panel5)
         {
@@ -39,29 +36,87 @@ namespace ChurchSystem.Dashboard_Forms.Members
             txtdate.Text = selectedDate.ToString("yyyy-MM-dd");
             SetSelectedDate(selectedDate);
 
-            optionsMenu = new ContextMenuStrip();
-            ToolStripMenuItem menuItem1 = new ToolStripMenuItem("Edit");
-            ToolStripMenuItem menuItem2 = new ToolStripMenuItem("Delete");
-            ToolStripMenuItem menuItem3 = new ToolStripMenuItem("Save");
-
-            optionsMenu.Items.Add(menuItem1);
-            optionsMenu.Items.Add(menuItem2);
-            optionsMenu.Items.Add(menuItem3);
-
-            button2.ContextMenuStrip = optionsMenu;
-            button2.Click += button2_Click;
         }
 
 
-        public EventDetailsForm(int eventId, string eventName, string eventType, string eventVenue, string eventTime, DateTime eventDate, Color eventColor, Panel panel5)
+
+        private void LoadEventDetails()
+        {
+            string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "iChurchConnect.accdb");
+            dbConnection = new AccessConnection(dbPath);
+
+            string query = "SELECT EventName, EventType, Venue, [StartTime], [EndTime], [Date] " +
+                           "FROM Events " +
+                           "WHERE EventID = @eventId";
+
+            try
+            {
+                dbConnection.OpenConnection();
+                OleDbCommand cmd = new OleDbCommand(query, dbConnection.GetConnection());
+                cmd.Parameters.AddWithValue("@eventId", eventId);
+
+                OleDbDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    eventName = reader["EventName"].ToString();
+                    eventType = reader["EventType"].ToString();
+                    eventVenue = reader["Venue"].ToString();
+                    startTime = reader["StartTime"].ToString();
+                    endTime = reader["EndTime"].ToString();
+                    selectedDate = Convert.ToDateTime(reader["Date"]);
+
+                    // Update UI with loaded event details
+                    txtdate.Text = selectedDate.ToString("yyyy-MM-dd");
+                    txteventname.Text = eventName;
+                    txttype.Text = eventType;
+                    txtvenue.Text = eventVenue;
+                    cmbtime.Text = startTime;
+                    comboBox1.Text = endTime;
+
+                    DateTime startTimeValue;
+                    if (DateTime.TryParseExact(startTime, "H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTimeValue))
+                    {
+                        cmbtime.SelectedItem = startTimeValue.ToString("h:mm tt");
+                    }
+
+                    DateTime endTimeValue;
+                    if (DateTime.TryParseExact(endTime, "H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTimeValue))
+                    {
+                        comboBox1.SelectedItem = endTimeValue.ToString("h:mm tt");
+                    }
+
+                    SetSelectedDate(selectedDate);
+                }
+                else
+                {
+                    MessageBox.Show("Event not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+            finally
+            {
+                dbConnection.CloseConnection();
+            }
+        }
+
+
+
+        public EventDetailsForm(string eventName, string eventType, string eventVenue, string startTime, string endTime, DateTime eventDate, Color eventColor, Panel panel5)
         {
             InitializeComponent();
 
-            this.eventId = eventId;
+
             this.eventName = eventName;
             this.eventType = eventType;
             this.eventVenue = eventVenue;
-            this.eventTime = eventTime;
+            this.startTime = startTime;
+            this.endTime = endTime;
             this.selectedDate = eventDate;
             this.eventColor = eventColor;
             this.panel5 = panel5;
@@ -70,57 +125,39 @@ namespace ChurchSystem.Dashboard_Forms.Members
             txteventname.Text = eventName;
             txttype.Text = eventType;
             txtvenue.Text = eventVenue;
-            cmbtime.Text = eventTime;
+            cmbtime.Text = startTime;
+            comboBox1.Text = endTime;
+
+            DateTime startTimeValue;
+            if (DateTime.TryParseExact(startTime, "H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTimeValue))
+            {
+                cmbtime.SelectedItem = startTimeValue.ToString("h:mm tt");
+            }
+
+            // Format and display end time
+            DateTime endTimeValue;
+            if (DateTime.TryParseExact(endTime, "H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTimeValue))
+            {
+                comboBox1.SelectedItem = endTimeValue.ToString("h:mm tt");
+            }
 
             SetSelectedDate(selectedDate);
 
-            optionsMenu = new ContextMenuStrip();
-            ToolStripMenuItem menuItem1 = new ToolStripMenuItem("Edit");
-            ToolStripMenuItem menuItem2 = new ToolStripMenuItem("Delete");
-            ToolStripMenuItem menuItem3 = new ToolStripMenuItem("Save");
-
-            optionsMenu.Items.Add(menuItem1);
-            optionsMenu.Items.Add(menuItem2);
-            optionsMenu.Items.Add(menuItem3);
-
-            button2.ContextMenuStrip = optionsMenu;
-            button2.Click += button2_Click;
         }
 
 
-        private void DeleteEvent_Click(object sender, EventArgs e)
+        public event EventHandler EventUpdated;
+
+        protected virtual void OnEventUpdated()
         {
-
-            Button eventButton = FindEventButton(panel5);
-            if (eventButton != null)
-            {
-                panel5.Controls.Remove(eventButton);
-            }
-            this.Close();
+            EventUpdated?.Invoke(this, EventArgs.Empty);
         }
 
-
-        private Button FindEventButton(Panel panel)
-        {
-            foreach (Control control in panel.Controls)
-            {
-                if (control is Button button && button.Tag == this)
-                {
-                    return button;
-                }
-            }
-            return null;
-        }
 
         public void SetSelectedDate(DateTime date)
         {
             selectedDate = date;
             txtdate.Text = selectedDate.ToString("MMMM dd, yyyy");
-        }
-
-        private void Button_Click(object sender, EventArgs e)
-        {
-            Button clickedButton = sender as Button;
         }
 
         private void EventDetailsForm_Load(object sender, EventArgs e)
@@ -129,7 +166,18 @@ namespace ChurchSystem.Dashboard_Forms.Members
             SetSelectedDate(selectedDate);
         }
 
-        private void btnadd_Click_1(object sender, EventArgs e)
+        public event EventHandler EventAdded;
+
+        protected virtual void OnEventAdded()
+        {
+            EventAdded?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Do you want to create this event?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
@@ -138,26 +186,40 @@ namespace ChurchSystem.Dashboard_Forms.Members
                 string eventName = txteventname.Text;
                 string eventType = txttype.Text;
                 string eventVenue = txtvenue.Text;
-                string eventTimeString = cmbtime.SelectedItem?.ToString(); // Ensure eventTimeString is not null
+                string startTimeString = cmbtime.SelectedItem?.ToString();
+                string endTimeString = comboBox1.SelectedItem?.ToString();
                 DateTime eventDate;
+                DateTime startTime;
+                DateTime endTime;
 
+                // Check if date is valid
                 bool isValidDate = DateTime.TryParse(txtdate.Text, out eventDate);
-                DateTime eventTime;
-
-                if (!isValidDate || string.IsNullOrEmpty(eventTimeString) || !DateTime.TryParseExact(eventTimeString, "h:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out eventTime))
+                if (!isValidDate)
                 {
-                    MessageBox.Show("Invalid date or time. Please check the values.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Invalid date. Please check the value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Combine the date and time
-                eventDate = eventDate.Date.Add(eventTime.TimeOfDay);
+                // Check if start time is valid
+                if (string.IsNullOrEmpty(startTimeString) || !DateTime.TryParseExact(startTimeString, "h:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTime))
+                {
+                    MessageBox.Show("Invalid start time. Please check the value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Check if end time is valid
+                if (string.IsNullOrEmpty(endTimeString) || !DateTime.TryParseExact(endTimeString, "h:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTime))
+                {
+                    MessageBox.Show("Invalid end time. Please check the value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
 
                 string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "iChurchConnect.accdb");
-                AccessConnection dbConnection = new AccessConnection(dbPath);
+                dbConnection = new AccessConnection(dbPath);
 
-                string query = "INSERT INTO Events (EventName, EventType, Venue, [StartTime], [Date]) " +
-                               "VALUES (@eventName, @eventType, @eventVenue, @eventTime, @eventDate)";
+                string query = "INSERT INTO Events (EventName, EventType, Venue, [StartTime], [EndTime], [Date]) " +
+                               "VALUES (@eventName, @eventType, @eventVenue, @startTime, @endTime, @eventDate)";
 
                 try
                 {
@@ -166,15 +228,16 @@ namespace ChurchSystem.Dashboard_Forms.Members
                     cmd.Parameters.AddWithValue("@eventName", eventName);
                     cmd.Parameters.AddWithValue("@eventType", eventType);
                     cmd.Parameters.AddWithValue("@eventVenue", eventVenue);
-                    cmd.Parameters.AddWithValue("@eventTime", eventTime.ToString("h:mm tt")); // Store time as string
-                    cmd.Parameters.AddWithValue("@eventDate", eventDate.ToString("yyyy-MM-dd")); // Store date as string
+                    cmd.Parameters.AddWithValue("@startTime", startTime.ToString("h:mm tt")); // Store only time
+                    cmd.Parameters.AddWithValue("@endTime", endTime.ToString("h:mm tt")); // Store only time
+                    cmd.Parameters.AddWithValue("@eventDate", eventDate);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
                     {
                         MessageBox.Show("Event successfully created and saved to database.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        OnEventAdded(); // Raise the event
+                        OnEventAdded();
                         this.Close();
                     }
                     else
@@ -193,8 +256,7 @@ namespace ChurchSystem.Dashboard_Forms.Members
             }
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
+        private void guna2Button2_Click(object sender, EventArgs e)
         {
             this.Close();
             foreach (Form form in Application.OpenForms)
@@ -206,23 +268,5 @@ namespace ChurchSystem.Dashboard_Forms.Members
                 }
             }
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            optionsMenu.Show(button2, new Point(0, button2.Height));
-        }
-
-        public event EventHandler EventAdded;
-
-        protected virtual void OnEventAdded()
-        {
-            EventAdded?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-
     }
 }

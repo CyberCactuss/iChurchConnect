@@ -48,14 +48,14 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
                 return;
             }
 
-            
+
             if (!IsValidEmail(textBox2.Text))
             {
                 MessageBox.Show("Please enter a valid email address.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            
+
             if (comboBox1.SelectedIndex == -1 || comboBox2.SelectedIndex == -1)
             {
                 MessageBox.Show("Please make a selection for all dropdowns.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -64,7 +64,7 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
 
             name = textBox1.Text;
             email = textBox2.Text;
-            age = comboBox1.SelectedItem.ToString(); 
+            age = comboBox1.SelectedItem.ToString();
             sex = comboBox2.SelectedItem.ToString();
 
             AddMember2 member2Form = new AddMember2(name, email, age, sex);
@@ -113,6 +113,11 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2GradientPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
