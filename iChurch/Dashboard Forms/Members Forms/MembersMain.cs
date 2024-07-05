@@ -23,10 +23,11 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
 
         private void AdjustDataGridViewAppearance()
         {
-            
+
             guna2DataGridView1.Columns["ID"].FillWeight = 20;
-            guna2DataGridView1.Columns["Age"].FillWeight = 50;
-            guna2DataGridView1.Columns["Sex"].FillWeight = 70;
+            guna2DataGridView1.Columns["Age"].FillWeight = 35;
+            guna2DataGridView1.Columns["Sex"].FillWeight = 60;
+            guna2DataGridView1.Columns["Contact"].FillWeight = 75;
         }
 
         private void LoadMembersData()
@@ -42,7 +43,7 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
                 DataTable dataTable = new DataTable();
                 dataAdapter.Fill(dataTable);
 
-                
+
                 Dictionary<string, float> fillWeights = new Dictionary<string, float>();
                 foreach (DataGridViewColumn column in guna2DataGridView1.Columns)
                 {
@@ -52,10 +53,10 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
                     }
                 }
 
-                
+
                 guna2DataGridView1.Columns.Clear();
 
-                
+
                 guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     HeaderText = "ID",
@@ -66,10 +67,10 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
 
                 guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn
                 {
-                    HeaderText = "Full Name",
+                    HeaderText = "Name",
                     DataPropertyName = "FullName",
                     Name = "FullName",
-                    FillWeight = fillWeights.ContainsKey("FullName") ? fillWeights["FullName"] : 100 
+                    FillWeight = fillWeights.ContainsKey("FullName") ? fillWeights["FullName"] : 100
                 });
 
                 guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn
@@ -101,17 +102,8 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
                     HeaderText = "Email",
                     DataPropertyName = "Email",
                     Name = "Email",
-                    FillWeight = fillWeights.ContainsKey("Email") ? fillWeights["Email"] : 100 
+                    FillWeight = fillWeights.ContainsKey("Email") ? fillWeights["Email"] : 100
                 });
-
-                DataGridViewButtonColumn viewButtonColumn = new DataGridViewButtonColumn
-                {
-                    HeaderText = "Information",
-                    Name = "ViewInfo",
-                    Text = "View",
-                    UseColumnTextForButtonValue = true
-                };
-                guna2DataGridView1.Columns.Add(viewButtonColumn);
 
                 guna2DataGridView1.AutoGenerateColumns = false;
                 guna2DataGridView1.DataSource = dataTable;
@@ -133,7 +125,7 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
         {
             AddMember add = new AddMember();
             add.ShowDialog();
-            LoadMembersData(); // Refresh data after adding a member
+            LoadMembersData();
         }
 
         private void guna2Button2_Click(object sender, EventArgs e) // DELETE BUTTON
@@ -148,7 +140,7 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
                 if (result == DialogResult.Yes)
                 {
                     DeleteMember(memberId);
-                    LoadMembersData(); 
+                    LoadMembersData();
                 }
             }
             else
@@ -220,7 +212,7 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
 
                 EditMember editMember = new EditMember(memberId, name, email, age, sex, contact, address, birthday);
                 editMember.ShowDialog();
-                LoadMembersData(); // Refresh data after editing a member
+                LoadMembersData();
             }
             else
             {
@@ -230,6 +222,22 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
 
         private void guna2DataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
+        }
+
+        private void guna2Button4_Click(object sender, EventArgs e) // VIEW BUTTON
+        {
+            if (guna2DataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = guna2DataGridView1.SelectedRows[0];
+                string name = selectedRow.Cells["FullName"].Value.ToString();
+
+                ViewInfo viewInfo = new ViewInfo(name);
+                viewInfo.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select a member to view.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

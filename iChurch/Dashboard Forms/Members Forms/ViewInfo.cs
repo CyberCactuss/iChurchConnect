@@ -16,5 +16,21 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
         {
             InitializeComponent();
         }
+
+        public ViewInfo(String memberName)
+        {
+            InitializeComponent();
+            textBox1.Text = memberName;
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

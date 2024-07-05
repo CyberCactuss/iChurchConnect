@@ -56,7 +56,7 @@
             // 
             // guna2Elipse1
             // 
-            guna2Elipse1.BorderRadius = 16;
+            guna2Elipse1.BorderRadius = 36;
             guna2Elipse1.TargetControl = this;
             // 
             // pictureBox1

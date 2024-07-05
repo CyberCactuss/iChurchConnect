@@ -285,10 +285,10 @@
             // 
             comboBox2.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
             comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "Male", "Female", "Would rather not say" });
+            comboBox2.Items.AddRange(new object[] { "Male", "Female", "Rather not say" });
             comboBox2.Location = new Point(34, 578);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(207, 31);
+            comboBox2.Size = new Size(154, 31);
             comboBox2.TabIndex = 41;
             comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 

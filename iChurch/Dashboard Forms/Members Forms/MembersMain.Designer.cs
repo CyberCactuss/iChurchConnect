@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MembersMain));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -39,6 +40,8 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
@@ -49,13 +52,13 @@
             sexColumn = new DataGridViewTextBoxColumn();
             contactColumn = new DataGridViewTextBoxColumn();
             emailColumn = new DataGridViewTextBoxColumn();
-            ViewInfo = new DataGridViewTextBoxColumn();
+            guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
+            guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(components);
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).BeginInit();
             SuspendLayout();
             // 
             // guna2Button1
             // 
-            guna2Button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             guna2Button1.BorderRadius = 14;
             guna2Button1.CustomizableEdges = customizableEdges1;
             guna2Button1.DisabledState.BorderColor = Color.DarkGray;
@@ -68,10 +71,10 @@
             guna2Button1.Image = (Image)resources.GetObject("guna2Button1.Image");
             guna2Button1.ImageOffset = new Point(-36, 0);
             guna2Button1.ImageSize = new Size(22, 22);
-            guna2Button1.Location = new Point(668, 655);
+            guna2Button1.Location = new Point(242, 655);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2Button1.Size = new Size(145, 45);
+            guna2Button1.Size = new Size(142, 52);
             guna2Button1.TabIndex = 1;
             guna2Button1.Text = "Add";
             guna2Button1.TextAlign = HorizontalAlignment.Left;
@@ -93,10 +96,10 @@
             guna2Button2.Image = (Image)resources.GetObject("guna2Button2.Image");
             guna2Button2.ImageOffset = new Point(-38, 0);
             guna2Button2.ImageSize = new Size(22, 22);
-            guna2Button2.Location = new Point(860, 655);
+            guna2Button2.Location = new Point(866, 655);
             guna2Button2.Name = "guna2Button2";
             guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            guna2Button2.Size = new Size(145, 45);
+            guna2Button2.Size = new Size(142, 52);
             guna2Button2.TabIndex = 2;
             guna2Button2.Text = "Delete";
             guna2Button2.TextAlign = HorizontalAlignment.Left;
@@ -105,6 +108,7 @@
             // 
             // guna2Button3
             // 
+            guna2Button3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             guna2Button3.BackColor = Color.White;
             guna2Button3.BorderRadius = 14;
             guna2Button3.CustomizableEdges = customizableEdges5;
@@ -118,10 +122,10 @@
             guna2Button3.Image = (Image)resources.GetObject("guna2Button3.Image");
             guna2Button3.ImageOffset = new Point(-36, 0);
             guna2Button3.ImageSize = new Size(22, 22);
-            guna2Button3.Location = new Point(67, 655);
+            guna2Button3.Location = new Point(690, 655);
             guna2Button3.Name = "guna2Button3";
             guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            guna2Button3.Size = new Size(145, 45);
+            guna2Button3.Size = new Size(142, 52);
             guna2Button3.TabIndex = 3;
             guna2Button3.Text = "Edit";
             guna2Button3.TextAlign = HorizontalAlignment.Left;
@@ -154,9 +158,9 @@
             guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             guna2DataGridView1.ColumnHeadersHeight = 52;
             guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            guna2DataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, nameColumn, ageColumn, sexColumn, contactColumn, emailColumn, ViewInfo });
+            guna2DataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, nameColumn, ageColumn, sexColumn, contactColumn, emailColumn });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.LightSkyBlue;
+            dataGridViewCellStyle3.BackColor = Color.SkyBlue;
             dataGridViewCellStyle3.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle3.ForeColor = Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = Color.CornflowerBlue;
@@ -164,7 +168,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             guna2DataGridView1.GridColor = Color.White;
-            guna2DataGridView1.Location = new Point(12, 12);
+            guna2DataGridView1.Location = new Point(18, 12);
             guna2DataGridView1.Name = "guna2DataGridView1";
             guna2DataGridView1.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -179,7 +183,7 @@
             guna2DataGridView1.RowHeadersVisible = false;
             guna2DataGridView1.RowTemplate.DividerHeight = 5;
             guna2DataGridView1.RowTemplate.Height = 47;
-            guna2DataGridView1.Size = new Size(1064, 622);
+            guna2DataGridView1.Size = new Size(1055, 622);
             guna2DataGridView1.TabIndex = 4;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -214,6 +218,7 @@
             // nameColumn
             // 
             nameColumn.DividerWidth = 1;
+            nameColumn.FillWeight = 90F;
             nameColumn.HeaderText = "Name";
             nameColumn.Name = "nameColumn";
             nameColumn.ReadOnly = true;
@@ -221,7 +226,7 @@
             // 
             // ageColumn
             // 
-            ageColumn.FillWeight = 50F;
+            ageColumn.FillWeight = 35F;
             ageColumn.HeaderText = "Age";
             ageColumn.Name = "ageColumn";
             ageColumn.ReadOnly = true;
@@ -229,7 +234,7 @@
             // 
             // sexColumn
             // 
-            sexColumn.FillWeight = 70F;
+            sexColumn.FillWeight = 60F;
             sexColumn.HeaderText = "Sex";
             sexColumn.Name = "sexColumn";
             sexColumn.ReadOnly = true;
@@ -237,6 +242,7 @@
             // 
             // contactColumn
             // 
+            contactColumn.FillWeight = 75F;
             contactColumn.HeaderText = "Contact";
             contactColumn.Name = "contactColumn";
             contactColumn.ReadOnly = true;
@@ -249,11 +255,35 @@
             emailColumn.ReadOnly = true;
             emailColumn.Resizable = DataGridViewTriState.False;
             // 
-            // ViewInfo
+            // guna2Button4
             // 
-            ViewInfo.HeaderText = "Information";
-            ViewInfo.Name = "ViewInfo";
-            ViewInfo.ReadOnly = true;
+            guna2Button4.BackColor = Color.White;
+            guna2Button4.BorderRadius = 14;
+            guna2Button4.CustomizableEdges = customizableEdges7;
+            guna2Button4.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button4.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button4.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button4.FillColor = Color.Orange;
+            guna2Button4.Font = new Font("Century Gothic", 12.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2Button4.ForeColor = Color.White;
+            guna2Button4.Image = (Image)resources.GetObject("guna2Button4.Image");
+            guna2Button4.ImageOffset = new Point(-36, 0);
+            guna2Button4.ImageSize = new Size(22, 22);
+            guna2Button4.Location = new Point(66, 655);
+            guna2Button4.Name = "guna2Button4";
+            guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            guna2Button4.Size = new Size(142, 52);
+            guna2Button4.TabIndex = 5;
+            guna2Button4.Text = "View ";
+            guna2Button4.TextAlign = HorizontalAlignment.Left;
+            guna2Button4.TextOffset = new Point(47, 0);
+            guna2Button4.Click += guna2Button4_Click;
+            // 
+            // guna2Elipse1
+            // 
+            guna2Elipse1.BorderRadius = 25;
+            guna2Elipse1.TargetControl = guna2DataGridView1;
             // 
             // MembersMain
             // 
@@ -261,10 +291,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1088, 694);
+            Controls.Add(guna2Button4);
             Controls.Add(guna2DataGridView1);
             Controls.Add(guna2Button3);
             Controls.Add(guna2Button2);
             Controls.Add(guna2Button1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "MembersMain";
             Text = "MembersMain";
             Load += MembersMain_Load;
@@ -283,6 +315,7 @@
         private DataGridViewTextBoxColumn sexColumn;
         private DataGridViewTextBoxColumn contactColumn;
         private DataGridViewTextBoxColumn emailColumn;
-        private DataGridViewTextBoxColumn ViewInfo;
+        private Guna.UI2.WinForms.Guna2Button guna2Button4;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
     }
 }
