@@ -408,10 +408,11 @@
             Controls.Add(guna2Separator1);
             Controls.Add(guna2Panel2);
             Controls.Add(guna2Panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(1031, 718);
             Name = "MainDashboard";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "MainDashboard";
+            Text = "iChurchConnect";
             Load += MainDashboard_Load;
             guna2Panel1.ResumeLayout(false);
             guna2Panel1.PerformLayout();
