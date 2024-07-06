@@ -53,8 +53,9 @@
             label10 = new Label();
             panel4 = new Panel();
             panel5 = new Panel();
-            button5 = new Button();
-            button4 = new Button();
+            btnview = new Button();
+            btndelete = new Button();
+            btnedit = new Button();
             dataGridViewEvents = new DataGridView();
             panel6 = new Panel();
             flowLayoutPanel1.SuspendLayout();
@@ -307,8 +308,9 @@
             // panel5
             // 
             panel5.BackColor = Color.White;
-            panel5.Controls.Add(button5);
-            panel5.Controls.Add(button4);
+            panel5.Controls.Add(btnview);
+            panel5.Controls.Add(btndelete);
+            panel5.Controls.Add(btnedit);
             panel5.Controls.Add(dataGridViewEvents);
             panel5.Location = new Point(306, 210);
             panel5.Name = "panel5";
@@ -316,23 +318,35 @@
             panel5.TabIndex = 24;
             panel5.Paint += panel5_Paint;
             // 
-            // button5
+            // btnview
             // 
-            button5.Location = new Point(514, 444);
-            button5.Name = "button5";
-            button5.Size = new Size(82, 35);
-            button5.TabIndex = 2;
-            button5.Text = "Delete";
-            button5.UseVisualStyleBackColor = true;
+            btnview.Location = new Point(16, 444);
+            btnview.Name = "btnview";
+            btnview.Size = new Size(82, 35);
+            btnview.TabIndex = 3;
+            btnview.Text = "View";
+            btnview.UseVisualStyleBackColor = true;
+            btnview.Click += btnview_Click;
             // 
-            // button4
+            // btndelete
             // 
-            button4.Location = new Point(426, 444);
-            button4.Name = "button4";
-            button4.Size = new Size(82, 35);
-            button4.TabIndex = 1;
-            button4.Text = "Edit";
-            button4.UseVisualStyleBackColor = true;
+            btndelete.Location = new Point(514, 444);
+            btndelete.Name = "btndelete";
+            btndelete.Size = new Size(82, 35);
+            btndelete.TabIndex = 2;
+            btndelete.Text = "Delete";
+            btndelete.UseVisualStyleBackColor = true;
+            btndelete.Click += btndelete_Click;
+            // 
+            // btnedit
+            // 
+            btnedit.Location = new Point(426, 444);
+            btnedit.Name = "btnedit";
+            btnedit.Size = new Size(82, 35);
+            btnedit.TabIndex = 1;
+            btnedit.Text = "Edit";
+            btnedit.UseVisualStyleBackColor = true;
+            btnedit.Click += btnedit_Click;
             // 
             // dataGridViewEvents
             // 
@@ -417,8 +431,9 @@
         private Panel panel5;
         private Panel panel6;
         private DataGridView dataGridViewEvents;
-        private Button button5;
-        private Button button4;
+        private Button btndelete;
+        private Button btnedit;
         private Button refreshbtn;
+        private Button btnview;
     }
 }
