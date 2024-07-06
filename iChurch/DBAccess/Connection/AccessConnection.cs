@@ -13,7 +13,7 @@ namespace iChurch.DBAccess.Connection
             connection = new OleDbConnection(connectionString);
         }
 
-        // Methods for opening, closing, and retrieving the connection
+        
         public void OpenConnection()
         {
             if (connection.State == System.Data.ConnectionState.Closed)

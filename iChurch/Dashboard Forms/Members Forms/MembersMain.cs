@@ -229,9 +229,9 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
             if (guna2DataGridView1.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = guna2DataGridView1.SelectedRows[0];
-                string name = selectedRow.Cells["FullName"].Value.ToString();
-
-                ViewInfo viewInfo = new ViewInfo(name);
+                int memberId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
+                ViewInfo viewInfo = new ViewInfo(memberId);
+                viewInfo.Tag = memberId; 
                 viewInfo.ShowDialog();
             }
             else
