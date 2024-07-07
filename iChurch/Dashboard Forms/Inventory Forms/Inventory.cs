@@ -20,7 +20,6 @@ namespace ChurchSystem.Dashboard_Forms
         private void Inventory_Load(object sender, EventArgs e)
         {
             LoadInventoryData();
-            guna2DataGridView1.CellPainting += guna2DataGridView1_CellPainting;
         }
 
         private void LoadInventoryData()
@@ -30,7 +29,7 @@ namespace ChurchSystem.Dashboard_Forms
                 AccessConnection dbConnection = new AccessConnection();
                 dbConnection.OpenConnection();
 
-                string query = "SELECT ItemID, ItemName, Quantity, Image FROM Inventory";
+                string query = "SELECT ItemID, ItemName, Qnty, Picture FROM Inventory";
                 OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, dbConnection.GetConnection());
                 DataTable dataTable = new DataTable();
                 dataAdapter.Fill(dataTable);
@@ -58,16 +57,30 @@ namespace ChurchSystem.Dashboard_Forms
                 guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     HeaderText = "Quantity",
-                    DataPropertyName = "Quantity",
-                    Name = "Quantity"
+                    DataPropertyName = "Qnty",
+                    Name = "Qnty"
                 });
 
-                guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+                guna2DataGridView1.Columns.Add(new DataGridViewImageColumn
                 {
-                    HeaderText = "Image",
-                    DataPropertyName = "Image",
-                    Name = "Image"
+                    HeaderText = "Picture",
+                    DataPropertyName = "Picture",
+                    Name = "Picture",
+                    ImageLayout = DataGridViewImageCellLayout.Zoom
                 });
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, row["Picture"].ToString());
+                    if (File.Exists(imagePath))
+                    {
+                        row["Picture"] = new Bitmap(imagePath);
+                    }
+                    else
+                    {
+                        row["Picture"] = null; // Or set a default image
+                    }
+                }
 
                 guna2DataGridView1.DataSource = dataTable;
 
@@ -79,25 +92,16 @@ namespace ChurchSystem.Dashboard_Forms
             }
         }
 
-        private void guna2DataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if (e.ColumnIndex == guna2DataGridView1.Columns["Image"].Index && e.RowIndex >= 0)
-            {
-
-
-                e.Handled = true;
-            }
-        }
-
-        private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Handle cell content click events if needed
-        }
-
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             AddItem additem = new AddItem();
             additem.ShowDialog();
+        }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            EditItem editItem = new EditItem();
+            editItem.ShowDialog();
         }
     }
 }

@@ -19,12 +19,13 @@ namespace iChurch.Dashboard_Forms.Members_Forms
         public string num;
         public string add;
         public DateTime bday;
+        public string fb;
         public EditMember()
         {
             InitializeComponent();
         }
 
-        public EditMember(int memberId, string name, string email, int age, string sex, string contact, string address, DateTime birthday)
+        public EditMember(int memberId, string name, string email, int age, string sex, string contact, string address, DateTime birthday, string facebook)
         {
             InitializeComponent();
 
@@ -36,6 +37,7 @@ namespace iChurch.Dashboard_Forms.Members_Forms
             num = contact;
             add = address;
             bday = birthday;
+            fb = facebook;
         }
 
         public string MemberName => textBox1.Text;
@@ -83,7 +85,7 @@ namespace iChurch.Dashboard_Forms.Members_Forms
                 MessageBox.Show("Please make a selection for all dropdowns.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            EditMember2 editMember2 = new EditMember2(MemberId, MemberName, MemberEmail, MemberAge, MemberSex, num, add, bday);
+            EditMember2 editMember2 = new EditMember2(MemberId, MemberName, MemberEmail, MemberAge, MemberSex, num, add, bday, fb);
             editMember2.Owner = this;
             editMember2.FormClosed += (s, args) => this.Close();
             this.Hide();

@@ -22,7 +22,7 @@ namespace iChurch.Dashboard_Forms.Members_Forms
             InitializeComponent();
         }
 
-        public EditMember2(int memberId, string name, string email, int age, string sex, string contact, string address, DateTime birthday)
+        public EditMember2(int memberId, string name, string email, int age, string sex, string contact, string address, DateTime birthday, string facebook)
         {
             InitializeComponent();
 
@@ -36,6 +36,7 @@ namespace iChurch.Dashboard_Forms.Members_Forms
             MemberBirthday = birthday;
 
             textBox3.Text = contact;
+            textBox2.Text = facebook;
             textBox1.Text = address;
             guna2DateTimePicker1.Value = birthday;
         }
@@ -63,7 +64,7 @@ namespace iChurch.Dashboard_Forms.Members_Forms
                 AccessConnection dbConnection = new AccessConnection();
                 dbConnection.OpenConnection();
 
-                string query = "UPDATE Members SET FullName = ?, Email = ?, Age = ?, Sex = ?, Contact = ?, Address = ?, Birthday = ? WHERE ID = ?";
+                string query = "UPDATE Members SET FullName = ?, Email = ?, Age = ?, Sex = ?, Contact = ?, Address = ?, Birthday = ?, FacebookAccount = ? WHERE ID = ?";
                 OleDbCommand command = new OleDbCommand(query, dbConnection.GetConnection());
                 command.Parameters.AddWithValue("@FullName", MemberName);
                 command.Parameters.AddWithValue("@Email", MemberEmail);
@@ -72,6 +73,7 @@ namespace iChurch.Dashboard_Forms.Members_Forms
                 command.Parameters.AddWithValue("@Contact", textBox3.Text);
                 command.Parameters.AddWithValue("@Address", textBox1.Text);
                 command.Parameters.AddWithValue("@Birthday", guna2DateTimePicker1.Value);
+                command.Parameters.AddWithValue("@FacebookAccount", textBox2.Text);
                 command.Parameters.AddWithValue("@ID", MemberId);
 
                 command.ExecuteNonQuery();
@@ -89,6 +91,11 @@ namespace iChurch.Dashboard_Forms.Members_Forms
         private void guna2Button2_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

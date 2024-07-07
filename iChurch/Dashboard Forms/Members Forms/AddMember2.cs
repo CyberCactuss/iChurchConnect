@@ -46,6 +46,7 @@ namespace ChurchSystem.Dashboard_Forms.Members
             string birthday = guna2DateTimePicker1.Value.ToString("yyyy-MM-dd");
             string contact = textBox3.Text;
             string address = textBox1.Text;
+            string facebook = textBox2.Text;
 
             MemberDetails memberDetails = new MemberDetails
             {
@@ -53,9 +54,10 @@ namespace ChurchSystem.Dashboard_Forms.Members
                 Email = email,
                 Age = age,
                 Sex = sex,
-                Birthday = birthday, // Now a string
+                Birthday = birthday,
                 Contact = contact,
-                Address = address
+                Address = address,
+                Facebook = facebook
             };
 
             SaveMemberDetails(memberDetails);
@@ -73,16 +75,17 @@ namespace ChurchSystem.Dashboard_Forms.Members
 
                 dbConnection.OpenConnection();
 
-                string query = "INSERT INTO Members (FullName, Email, Age, Sex, Birthday, Contact, Address) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                string query = "INSERT INTO Members (FullName, Email, Age, Sex, Birthday, Contact, Address, FacebookAccount) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 using (OleDbCommand cmd = new OleDbCommand(query, dbConnection.GetConnection()))
                 {
                     cmd.Parameters.AddWithValue("FullName", memberDetails.Name);
                     cmd.Parameters.AddWithValue("Email", memberDetails.Email);
                     cmd.Parameters.AddWithValue("Age", memberDetails.Age);
                     cmd.Parameters.AddWithValue("Sex", memberDetails.Sex);
-                    cmd.Parameters.AddWithValue("Birthday", memberDetails.Birthday); // Treated as string
+                    cmd.Parameters.AddWithValue("Birthday", memberDetails.Birthday); 
                     cmd.Parameters.AddWithValue("Contact", memberDetails.Contact);
                     cmd.Parameters.AddWithValue("Address", memberDetails.Address);
+                    cmd.Parameters.AddWithValue("Facebook", memberDetails.Facebook);
                     cmd.ExecuteNonQuery();
                 }
 
@@ -110,6 +113,11 @@ namespace ChurchSystem.Dashboard_Forms.Members
         }
 
         private void guna2DateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -184,13 +184,14 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
 
                 string address = "";
                 DateTime birthday = DateTime.MinValue;
+                string facebook = "";
 
                 try
                 {
                     AccessConnection dbConnection = new AccessConnection();
                     dbConnection.OpenConnection();
 
-                    string query = "SELECT Address, Birthday FROM Members WHERE ID = ?";
+                    string query = "SELECT Address, Birthday, FacebookAccount FROM Members WHERE ID = ?";
                     OleDbCommand command = new OleDbCommand(query, dbConnection.GetConnection());
                     command.Parameters.AddWithValue("@ID", memberId);
                     OleDbDataReader reader = command.ExecuteReader();
@@ -199,6 +200,7 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
                     {
                         address = reader["Address"].ToString();
                         birthday = DateTime.Parse(reader["Birthday"].ToString());
+                        facebook = reader["FacebookAccount"].ToString();
                     }
 
                     reader.Close();
@@ -210,7 +212,7 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
                     return;
                 }
 
-                EditMember editMember = new EditMember(memberId, name, email, age, sex, contact, address, birthday);
+                EditMember editMember = new EditMember(memberId, name, email, age, sex, contact, address, birthday, facebook);
                 editMember.ShowDialog();
                 LoadMembersData();
             }

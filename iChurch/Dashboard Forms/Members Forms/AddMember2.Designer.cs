@@ -58,6 +58,9 @@
             guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             guna2DateTimePicker1 = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            textBox2 = new TextBox();
+            label5 = new Label();
+            label6 = new Label();
             guna2GradientPanel2.SuspendLayout();
             guna2GradientPanel1.SuspendLayout();
             SuspendLayout();
@@ -67,7 +70,7 @@
             textBox3.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
             textBox3.Location = new Point(31, 250);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(491, 31);
+            textBox3.Size = new Size(266, 31);
             textBox3.TabIndex = 39;
             textBox3.TextChanged += textBox3_TextChanged;
             // 
@@ -76,7 +79,7 @@
             label13.AutoSize = true;
             label13.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold);
             label13.ForeColor = Color.FromArgb(219, 31, 89);
-            label13.Location = new Point(120, 416);
+            label13.Location = new Point(120, 551);
             label13.Name = "label13";
             label13.Size = new Size(21, 25);
             label13.TabIndex = 37;
@@ -86,7 +89,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold);
-            label14.Location = new Point(27, 417);
+            label14.Location = new Point(27, 552);
             label14.Name = "label14";
             label14.Size = new Size(101, 25);
             label14.TabIndex = 36;
@@ -122,7 +125,7 @@
             guna2GradientPanel2.FillColor = Color.FromArgb(0, 255, 243);
             guna2GradientPanel2.FillColor2 = Color.FromArgb(30, 69, 252);
             guna2GradientPanel2.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            guna2GradientPanel2.Location = new Point(0, 670);
+            guna2GradientPanel2.Location = new Point(0, 807);
             guna2GradientPanel2.Name = "guna2GradientPanel2";
             guna2GradientPanel2.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2GradientPanel2.Size = new Size(655, 16);
@@ -191,7 +194,7 @@
             // textBox1
             // 
             textBox1.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
-            textBox1.Location = new Point(31, 357);
+            textBox1.Location = new Point(31, 485);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(491, 31);
             textBox1.TabIndex = 49;
@@ -202,7 +205,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(219, 31, 89);
-            label1.Location = new Point(120, 308);
+            label1.Location = new Point(120, 436);
             label1.Name = "label1";
             label1.Size = new Size(21, 25);
             label1.TabIndex = 48;
@@ -212,7 +215,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold);
-            label4.Location = new Point(27, 309);
+            label4.Location = new Point(27, 437);
             label4.Name = "label4";
             label4.Size = new Size(100, 25);
             label4.TabIndex = 47;
@@ -233,7 +236,7 @@
             guna2Button2.ForeColor = Color.FromArgb(16, 154, 248);
             guna2Button2.Image = (Image)resources.GetObject("guna2Button2.Image");
             guna2Button2.ImageOffset = new Point(-8, 0);
-            guna2Button2.Location = new Point(343, 579);
+            guna2Button2.Location = new Point(343, 716);
             guna2Button2.Name = "guna2Button2";
             guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges8;
             guna2Button2.Size = new Size(266, 56);
@@ -255,7 +258,7 @@
             guna2Button1.ForeColor = Color.White;
             guna2Button1.Image = (Image)resources.GetObject("guna2Button1.Image");
             guna2Button1.ImageOffset = new Point(-8, 0);
-            guna2Button1.Location = new Point(31, 579);
+            guna2Button1.Location = new Point(31, 716);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges10;
             guna2Button1.Size = new Size(266, 56);
@@ -272,7 +275,7 @@
             guna2DateTimePicker1.FillColor = Color.White;
             guna2DateTimePicker1.Font = new Font("Century Gothic", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2DateTimePicker1.Format = DateTimePickerFormat.Long;
-            guna2DateTimePicker1.Location = new Point(31, 474);
+            guna2DateTimePicker1.Location = new Point(31, 609);
             guna2DateTimePicker1.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             guna2DateTimePicker1.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             guna2DateTimePicker1.Name = "guna2DateTimePicker1";
@@ -282,11 +285,44 @@
             guna2DateTimePicker1.Value = new DateTime(2024, 5, 4, 23, 29, 9, 731);
             guna2DateTimePicker1.ValueChanged += guna2DateTimePicker1_ValueChanged;
             // 
+            // textBox2
+            // 
+            textBox2.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
+            textBox2.Location = new Point(31, 370);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(266, 31);
+            textBox2.TabIndex = 55;
+            textBox2.TextChanged += textBox2_TextChanged;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold);
+            label5.ForeColor = Color.FromArgb(219, 31, 89);
+            label5.Location = new Point(236, 323);
+            label5.Name = "label5";
+            label5.Size = new Size(21, 25);
+            label5.TabIndex = 54;
+            label5.Text = "*";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold);
+            label6.Location = new Point(27, 325);
+            label6.Name = "label6";
+            label6.Size = new Size(213, 25);
+            label6.TabIndex = 53;
+            label6.Text = "Facebook Account:";
+            // 
             // AddMember2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(655, 686);
+            ClientSize = new Size(655, 823);
+            Controls.Add(textBox2);
+            Controls.Add(label5);
+            Controls.Add(label6);
             Controls.Add(guna2DateTimePicker1);
             Controls.Add(guna2Button2);
             Controls.Add(guna2Button1);
@@ -332,5 +368,8 @@
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePicker1;
+        private TextBox textBox2;
+        private Label label5;
+        private Label label6;
     }
 }

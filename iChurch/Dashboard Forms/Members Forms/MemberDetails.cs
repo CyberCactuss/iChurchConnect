@@ -15,6 +15,7 @@ namespace iChurch.Dashboard_Forms.Members_Forms
         public string Birthday { get; set; }
         public string Contact { get; set; }
         public string Address { get; set; }
+        public string Facebook { get; set; }
     }
 
 }

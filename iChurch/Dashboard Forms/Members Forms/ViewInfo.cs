@@ -35,7 +35,7 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
                 AccessConnection dbConnection = new AccessConnection();
                 dbConnection.OpenConnection();
 
-                string query = "SELECT FullName, Age, Sex, Contact, Email, Address, Birthday, ProfilePicturePath FROM Members WHERE ID = ?";
+                string query = "SELECT FullName, Age, Sex, Contact, Email, Address, Birthday, FacebookAccount, ProfilePicturePath FROM Members WHERE ID = ?";
                 OleDbCommand command = new OleDbCommand(query, dbConnection.GetConnection());
                 command.Parameters.AddWithValue("@ID", memberId);
 
@@ -49,6 +49,7 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
                     textBox7.Text = reader["Email"].ToString();
                     textBox5.Text = reader["Address"].ToString();
                     textBox4.Text = DateTime.Parse(reader["Birthday"].ToString()).ToString("yyyy-MM-dd");
+                    textBox8.Text = reader["FacebookAccount"].ToString();
 
                     string relativePath = reader["ProfilePicturePath"].ToString();
                     string exeDirectory = AppDomain.CurrentDomain.BaseDirectory;

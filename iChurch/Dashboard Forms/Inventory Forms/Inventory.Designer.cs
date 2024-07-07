@@ -132,7 +132,6 @@
             guna2DataGridView1.ThemeStyle.RowsStyle.Height = 47;
             guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            guna2DataGridView1.CellContentClick += guna2DataGridView1_CellContentClick;
             // 
             // Image
             // 
@@ -192,6 +191,7 @@
             guna2Button3.Text = "Edit";
             guna2Button3.TextAlign = HorizontalAlignment.Left;
             guna2Button3.TextOffset = new Point(47, 0);
+            guna2Button3.Click += guna2Button3_Click;
             // 
             // guna2Button2
             // 
