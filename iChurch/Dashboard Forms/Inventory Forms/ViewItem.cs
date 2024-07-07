@@ -28,10 +28,25 @@ namespace iChurch.Dashboard_Forms.Inventory_Forms
             textBox1.Text = itemName;
             textBox3.Text = quantity.ToString();
 
-            // Load image if exists
-            if (!string.IsNullOrEmpty(imagePath) && File.Exists(imagePath))
+            // Convert relative path to absolute path before loading the image
+            if (!string.IsNullOrEmpty(imagePath))
             {
-                pictureBox1.Image = Image.FromFile(imagePath);
+                string exeDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string fullPath = Path.Combine(exeDirectory, imagePath);
+
+                if (File.Exists(fullPath))
+                {
+                    pictureBox1.Image = Image.FromFile(fullPath);
+                }
+                else
+                {
+                    MessageBox.Show($"Image file not found: {fullPath}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    pictureBox1.Image = null; // or set to a default image
+                }
+            }
+            else
+            {
+                pictureBox1.Image = null; // or set to a default image
             }
         }
 
@@ -56,7 +71,11 @@ namespace iChurch.Dashboard_Forms.Inventory_Forms
                     try
                     {
                         File.Copy(sourcePath, destinationPath, true);
+                        // Update picture box with new image
                         pictureBox1.Image = Image.FromFile(destinationPath);
+
+                        // Save the relative path
+                        imagePath = Path.Combine(@"..\..\..\..\Inventory", $"{itemId}.jpg");
                     }
                     catch (IOException ioEx)
                     {
@@ -66,29 +85,6 @@ namespace iChurch.Dashboard_Forms.Inventory_Forms
             }
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e) // ITEM ID
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e) // ITEM NAME
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e) // ITEM QUANTITY
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e) // PICTURE BOX
-        {
-
-        }
-
-        private void ViewItem_Load(object sender, EventArgs e)
-        {
-
-        }
+        // Other methods remain unchanged
     }
 }

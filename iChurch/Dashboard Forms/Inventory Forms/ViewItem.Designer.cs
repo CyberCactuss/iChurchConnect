@@ -42,13 +42,12 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(25, 71);
+            pictureBox1.Location = new Point(36, 76);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(372, 339);
+            pictureBox1.Size = new Size(343, 309);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
             // 
             // label3
             // 
@@ -104,7 +103,6 @@
             textBox2.ReadOnly = true;
             textBox2.Size = new Size(177, 30);
             textBox2.TabIndex = 64;
-            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // textBox1
             // 
@@ -116,7 +114,6 @@
             textBox1.ReadOnly = true;
             textBox1.Size = new Size(177, 30);
             textBox1.TabIndex = 65;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // textBox3
             // 
@@ -128,7 +125,7 @@
             textBox3.ReadOnly = true;
             textBox3.Size = new Size(177, 30);
             textBox3.TabIndex = 66;
-            textBox3.TextChanged += textBox3_TextChanged;
+
             // 
             // ViewItem
             // 
@@ -147,7 +144,6 @@
             Name = "ViewItem";
             StartPosition = FormStartPosition.CenterScreen;
             Text = " Inventory Details";
-            Load += ViewItem_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

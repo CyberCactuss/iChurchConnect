@@ -22,9 +22,22 @@ namespace iChurch.Dashboard_Forms.Inventory_Forms
             textBox2.Text = itemName;
             comboBox1.SelectedItem = quantity.ToString();
             this.imagePath = imagePath;
+
+            // Convert relative path to absolute path to load the image
             if (!string.IsNullOrEmpty(imagePath))
             {
-                pictureBox2.Image = Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, imagePath));
+                string exeDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string fullPath = Path.Combine(exeDirectory, imagePath);
+
+                if (File.Exists(fullPath))
+                {
+                    pictureBox2.Image = Image.FromFile(fullPath);
+                }
+                else
+                {
+                    MessageBox.Show($"Image file not found: {fullPath}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    pictureBox2.Image = null; // or set to a default image
+                }
             }
             parentForm = parent;
         }
@@ -55,7 +68,7 @@ namespace iChurch.Dashboard_Forms.Inventory_Forms
                     {
                         cmd.Parameters.AddWithValue("?", itemName);
                         cmd.Parameters.AddWithValue("?", quantity);
-                        cmd.Parameters.AddWithValue("?", imagePath);
+                        cmd.Parameters.AddWithValue("?", imagePath); // Save relative path
                         cmd.Parameters.AddWithValue("?", itemId);
 
                         cmd.ExecuteNonQuery();
@@ -83,7 +96,7 @@ namespace iChurch.Dashboard_Forms.Inventory_Forms
                     pictureBox2.Image = Image.FromFile(sourcePath);
 
                     string exeDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                    string imagesFolder = Path.Combine(exeDirectory, "Inventory");
+                    string imagesFolder = Path.Combine(exeDirectory, @"..\..\..\..\Inventory");
 
                     if (!Directory.Exists(imagesFolder))
                     {
@@ -96,7 +109,8 @@ namespace iChurch.Dashboard_Forms.Inventory_Forms
                     try
                     {
                         File.Copy(sourcePath, destinationPath, true);
-                        imagePath = Path.Combine("Inventory", fileName); // Save relative path
+                        // Update imagePath to the new relative path
+                        imagePath = Path.Combine(@"..\..\..\..\Inventory", fileName);
                     }
                     catch (IOException ioEx)
                     {

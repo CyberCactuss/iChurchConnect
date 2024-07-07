@@ -58,7 +58,7 @@ namespace iChurch.Dashboard_Forms.Inventory_Forms
                         cmd.Parameters.AddWithValue("ItemID", itemId);
                         cmd.Parameters.AddWithValue("ItemName", itemName);
                         cmd.Parameters.AddWithValue("Qnty", quantity);
-                        cmd.Parameters.AddWithValue("Image", imagePath);
+                        cmd.Parameters.AddWithValue("Image", imagePath); // Save relative path here
 
                         cmd.ExecuteNonQuery();
                     }
@@ -85,7 +85,8 @@ namespace iChurch.Dashboard_Forms.Inventory_Forms
                     pictureBox2.Image = Image.FromFile(sourcePath);
 
                     string exeDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                    string imagesFolder = Path.Combine(exeDirectory, "Inventory");
+                    // Navigate four levels up and then to Inventory folder
+                    string imagesFolder = Path.Combine(exeDirectory, @"..\..\..\..\Inventory");
 
                     if (!Directory.Exists(imagesFolder))
                     {
@@ -98,7 +99,8 @@ namespace iChurch.Dashboard_Forms.Inventory_Forms
                     try
                     {
                         File.Copy(sourcePath, destinationPath, true);
-                        imagePath = Path.Combine("Inventory", fileName); // Save relative path
+                        // Save the relative path from four levels up
+                        imagePath = Path.Combine(@"..\..\..\..\Inventory", fileName);
                     }
                     catch (IOException ioEx)
                     {
