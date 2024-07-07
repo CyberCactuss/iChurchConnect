@@ -8,23 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ChurchSystem.Dashboard_Forms
+namespace iChurch.Tools
 {
-    public partial class Finance : Form
+    public partial class SmallRoundPanel : UserControl
     {
-        public Finance()
+        public SmallRoundPanel()
         {
             InitializeComponent();
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Finance_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -68,39 +68,39 @@ namespace ChurchSystem.Dashboard_Forms
             }
         }
 
-            public void CheckAndPromptForEmptyGmail()
+        public void CheckAndPromptForEmptyGmail()
+        {
+            try
             {
-                try
+                dbConnection.OpenConnection();
+
+                // Query to check if Gmail column is empty for Admin with ID 1
+                string query = "SELECT Gmail FROM Admin WHERE ID = ?";
+                OleDbCommand command = new OleDbCommand(query, dbConnection.GetConnection());
+                command.Parameters.AddWithValue("@ID", 1); // Replace with actual admin ID
+
+                OleDbDataReader reader = command.ExecuteReader();
+                if (reader.Read())
                 {
-                    dbConnection.OpenConnection();
+                    string gmailValue = reader["Gmail"].ToString();
 
-                    // Query to check if Gmail column is empty for Admin with ID 1
-                    string query = "SELECT Gmail FROM Admin WHERE ID = ?";
-                    OleDbCommand command = new OleDbCommand(query, dbConnection.GetConnection());
-                    command.Parameters.AddWithValue("@ID", 1); // Replace with actual admin ID
-
-                    OleDbDataReader reader = command.ExecuteReader();
-                    if (reader.Read())
+                    if (string.IsNullOrEmpty(gmailValue))
                     {
-                        string gmailValue = reader["Gmail"].ToString();
-
-                        if (string.IsNullOrEmpty(gmailValue))
-                        {
-                            // Gmail is empty, prompt the user
-                            MessageBox.Show("Please enter your Gmail account for verification purposes.", "Empty Gmail Account", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
+                        // Gmail is empty, prompt the user
+                        MessageBox.Show("Please enter your Gmail account for verification purposes.", "Empty Gmail Account", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    reader.Close();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error: {ex.Message}");
-                }
-                finally
-                {
-                    dbConnection.CloseConnection();
-                }
+                reader.Close();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+            finally
+            {
+                dbConnection.CloseConnection();
+            }
+        }
 
 
         private void label1_Click(object sender, EventArgs e)
@@ -148,6 +148,11 @@ namespace ChurchSystem.Dashboard_Forms
         }
 
         private void pictureBox2_Click(object sender, EventArgs e) // PICTURE
+        {
+
+        }
+
+        private void Settings_Load(object sender, EventArgs e)
         {
 
         }

@@ -137,7 +137,6 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(102, 31);
             comboBox1.TabIndex = 72;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // textBox2
             // 
@@ -146,7 +145,6 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(310, 31);
             textBox2.TabIndex = 71;
-            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // textBox1
             // 
@@ -155,7 +153,6 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(235, 31);
             textBox1.TabIndex = 70;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // guna2Button2
             // 
@@ -296,7 +293,6 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 76;
             pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
             // 
             // guna2Button3
             // 
@@ -349,7 +345,6 @@
             Name = "AddItem";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AddItem";
-            Load += AddItem_Load;
             guna2GradientPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);

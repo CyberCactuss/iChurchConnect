@@ -92,6 +92,7 @@
             guna2Button3.TabIndex = 96;
             guna2Button3.Text = "Upload Picture";
             guna2Button3.TextOffset = new Point(1, 0);
+            guna2Button3.Click += guna2Button3_Click;
             // 
             // pictureBox2
             // 
@@ -172,6 +173,7 @@
             guna2Button2.TabIndex = 89;
             guna2Button2.Text = "Cancel";
             guna2Button2.TextOffset = new Point(-5, 0);
+            guna2Button2.Click += guna2Button2_Click;
             // 
             // guna2Button1
             // 
@@ -193,6 +195,7 @@
             guna2Button1.TabIndex = 88;
             guna2Button1.Text = "Save";
             guna2Button1.TextOffset = new Point(-5, 0);
+            guna2Button1.Click += guna2Button1_Click;
             // 
             // guna2Elipse2
             // 
@@ -345,6 +348,7 @@
             Controls.Add(guna2GradientPanel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "EditItem";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "EditItem";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             guna2GradientPanel1.ResumeLayout(false);

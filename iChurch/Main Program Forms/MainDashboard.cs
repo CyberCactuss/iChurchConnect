@@ -81,8 +81,8 @@ namespace ChurchSystem
                     ShowChildForm(financeForm);
                     break;
                 case "guna2Button6": // Settings Button
-                    settingsForm.CheckAndPromptForEmptyGmail();
                     ShowChildForm(settingsForm);
+                    settingsForm.CheckAndPromptForEmptyGmail();
                     break;
                 case "guna2Button8": // Home Button
                     ShowChildForm(homeForm);
