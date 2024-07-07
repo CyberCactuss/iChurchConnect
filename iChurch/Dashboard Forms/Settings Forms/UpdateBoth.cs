@@ -16,5 +16,10 @@ namespace iChurch.Dashboard_Forms.Settings_Forms
         {
             InitializeComponent();
         }
+
+        private void guna2GradientButton1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

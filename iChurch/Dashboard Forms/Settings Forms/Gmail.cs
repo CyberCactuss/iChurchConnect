@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace iChurch.Dashboard_Forms.Settings_Forms
 {
-    public partial class Password : Form
+    public partial class Gmail : Form
     {
-        public Password()
+        public Gmail()
         {
             InitializeComponent();
+        }
+
+        private void guna2GradientButton1_Click(object sender, EventArgs e)
+        {
+            OTP otp = new OTP();
+            otp.ShowDialog();
         }
     }
 }

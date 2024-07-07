@@ -59,7 +59,6 @@ namespace ChurchSystem
         {
             Guna2Button clickedButton = (Guna2Button)sender;
 
-
             foreach (var button in originalColors.Keys)
             {
                 button.FillColor = originalColors[button];
@@ -82,6 +81,7 @@ namespace ChurchSystem
                     ShowChildForm(financeForm);
                     break;
                 case "guna2Button6": // Settings Button
+                    settingsForm.CheckAndPromptForEmptyGmail();
                     ShowChildForm(settingsForm);
                     break;
                 case "guna2Button8": // Home Button
@@ -94,7 +94,6 @@ namespace ChurchSystem
 
         private void ShowChildForm(Form childForm)
         {
-
             if (currentChildForm != null)
             {
                 currentChildForm.Hide();
