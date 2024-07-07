@@ -341,6 +341,7 @@
             Controls.Add(label1);
             Controls.Add(guna2GradientPanel1);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AddMember";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AddMember";

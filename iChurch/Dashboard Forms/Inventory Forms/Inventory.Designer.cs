@@ -271,6 +271,7 @@
             Controls.Add(guna2Button2);
             Controls.Add(guna2Button1);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Inventory";
             Text = "Inventory";
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).EndInit();

@@ -347,6 +347,7 @@
             Controls.Add(guna2GradientPanel2);
             Controls.Add(guna2GradientPanel1);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "EditItem";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "EditItem";

@@ -339,6 +339,7 @@
             Controls.Add(label11);
             Controls.Add(label12);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AddMember2";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AddMember2";

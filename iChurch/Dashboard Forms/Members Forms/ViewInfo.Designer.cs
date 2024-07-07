@@ -495,6 +495,7 @@
             Controls.Add(pictureBox2);
             Controls.Add(textBox9);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ViewInfo";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ViewInfo";

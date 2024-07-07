@@ -343,6 +343,7 @@
             Controls.Add(label6);
             Controls.Add(guna2GradientPanel1);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "EditMember";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "EditMember";
