@@ -39,6 +39,9 @@
             textBox3 = new TextBox();
             pictureBox3 = new PictureBox();
             label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -83,22 +86,22 @@
             // 
             textBox1.BackColor = Color.FromArgb(38, 90, 27);
             textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox1.Font = new Font("Century Gothic", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox1.ForeColor = Color.White;
-            textBox1.Location = new Point(164, 136);
+            textBox1.Location = new Point(167, 200);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(144, 34);
+            textBox1.Size = new Size(144, 46);
             textBox1.TabIndex = 4;
             // 
             // textBox2
             // 
             textBox2.BackColor = Color.FromArgb(1, 90, 154);
             textBox2.BorderStyle = BorderStyle.None;
-            textBox2.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox2.Font = new Font("Century Gothic", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox2.ForeColor = Color.White;
-            textBox2.Location = new Point(494, 136);
+            textBox2.Location = new Point(497, 200);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(143, 34);
+            textBox2.Size = new Size(143, 46);
             textBox2.TabIndex = 6;
             // 
             // pictureBox2
@@ -117,11 +120,11 @@
             // 
             textBox3.BackColor = Color.FromArgb(235, 115, 0);
             textBox3.BorderStyle = BorderStyle.None;
-            textBox3.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox3.Font = new Font("Century Gothic", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox3.ForeColor = Color.White;
-            textBox3.Location = new Point(825, 136);
+            textBox3.Location = new Point(828, 200);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(143, 34);
+            textBox3.Size = new Size(143, 46);
             textBox3.TabIndex = 8;
             // 
             // pictureBox3
@@ -145,12 +148,51 @@
             label1.TabIndex = 9;
             label1.Text = "Donations | Tithes | Offerings";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.FromArgb(38, 90, 27);
+            label2.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(136, 267);
+            label2.Name = "label2";
+            label2.Size = new Size(126, 28);
+            label2.TabIndex = 10;
+            label2.Text = "This Week";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.FromArgb(1, 90, 154);
+            label3.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(466, 267);
+            label3.Name = "label3";
+            label3.Size = new Size(132, 28);
+            label3.TabIndex = 11;
+            label3.Text = "This Month";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.FromArgb(235, 115, 0);
+            label4.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(806, 267);
+            label4.Name = "label4";
+            label4.Size = new Size(114, 28);
+            label4.TabIndex = 12;
+            label4.Text = "This Year";
+            // 
             // Finance
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1072, 655);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(textBox3);
             Controls.Add(pictureBox3);
@@ -183,5 +225,8 @@
         private TextBox textBox3;
         private PictureBox pictureBox3;
         private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
     }
 }
