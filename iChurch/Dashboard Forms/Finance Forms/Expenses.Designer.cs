@@ -47,8 +47,10 @@
             Amount = new DataGridViewTextBoxColumn();
             Category = new DataGridViewTextBoxColumn();
             PaymentMethod = new DataGridViewTextBoxColumn();
-            Person = new DataGridViewTextBoxColumn();
-            GivenDate = new DataGridViewTextBoxColumn();
+            Description = new DataGridViewTextBoxColumn();
+            ExpenseDate = new DataGridViewTextBoxColumn();
+            EnteredBy = new DataGridViewTextBoxColumn();
+            EnteredDate = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -143,16 +145,16 @@
             guna2DataGridView1.BorderStyle = BorderStyle.FixedSingle;
             guna2DataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.Green;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(192, 0, 0);
             dataGridViewCellStyle2.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 64, 0);
+            dataGridViewCellStyle2.SelectionBackColor = Color.DarkRed;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             guna2DataGridView1.ColumnHeadersHeight = 52;
             guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            guna2DataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, Amount, Category, PaymentMethod, Person, GivenDate });
+            guna2DataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, Amount, Category, PaymentMethod, Description, ExpenseDate, EnteredBy, EnteredDate });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.SkyBlue;
             dataGridViewCellStyle3.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -233,21 +235,35 @@
             PaymentMethod.ReadOnly = true;
             PaymentMethod.Resizable = DataGridViewTriState.False;
             // 
-            // Person
+            // Description
             // 
-            Person.FillWeight = 80F;
-            Person.HeaderText = "Person/Organization";
-            Person.Name = "Person";
-            Person.ReadOnly = true;
-            Person.Resizable = DataGridViewTriState.False;
+            Description.FillWeight = 80F;
+            Description.HeaderText = "Description";
+            Description.Name = "Description";
+            Description.ReadOnly = true;
+            Description.Resizable = DataGridViewTriState.False;
             // 
-            // GivenDate
+            // ExpenseDate
             // 
-            GivenDate.FillWeight = 40F;
-            GivenDate.HeaderText = "GivenDate";
-            GivenDate.Name = "GivenDate";
-            GivenDate.ReadOnly = true;
-            GivenDate.Resizable = DataGridViewTriState.False;
+            ExpenseDate.FillWeight = 50F;
+            ExpenseDate.HeaderText = "Expense Date";
+            ExpenseDate.Name = "ExpenseDate";
+            ExpenseDate.ReadOnly = true;
+            ExpenseDate.Resizable = DataGridViewTriState.False;
+            // 
+            // EnteredBy
+            // 
+            EnteredBy.FillWeight = 60F;
+            EnteredBy.HeaderText = "Entered By";
+            EnteredBy.Name = "EnteredBy";
+            EnteredBy.ReadOnly = true;
+            // 
+            // EnteredDate
+            // 
+            EnteredDate.FillWeight = 50F;
+            EnteredDate.HeaderText = "Entered Date";
+            EnteredDate.Name = "EnteredDate";
+            EnteredDate.ReadOnly = true;
             // 
             // Expenses
             // 
@@ -275,7 +291,9 @@
         private DataGridViewTextBoxColumn Amount;
         private DataGridViewTextBoxColumn Category;
         private DataGridViewTextBoxColumn PaymentMethod;
-        private DataGridViewTextBoxColumn Person;
-        private DataGridViewTextBoxColumn GivenDate;
+        private DataGridViewTextBoxColumn Description;
+        private DataGridViewTextBoxColumn ExpenseDate;
+        private DataGridViewTextBoxColumn EnteredBy;
+        private DataGridViewTextBoxColumn EnteredDate;
     }
 }
