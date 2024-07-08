@@ -210,7 +210,7 @@
             // 
             comboBox1.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Donations", "Tithes", "Offerings", "Others" });
+            comboBox1.Items.AddRange(new object[] { "Donations", "Tithes", "Offerings", "Fundraising", "Rental Income", "Grants", "Fees", "Miscellaneous" });
             comboBox1.Location = new Point(34, 344);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(235, 31);

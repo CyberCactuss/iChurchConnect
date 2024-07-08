@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddExpenses));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             pictureBox1 = new PictureBox();
             label7 = new Label();
@@ -61,7 +61,7 @@
             // guna2Button3
             // 
             guna2Button3.BorderRadius = 9;
-            guna2Button3.CustomizableEdges = customizableEdges5;
+            guna2Button3.CustomizableEdges = customizableEdges1;
             guna2Button3.DisabledState.BorderColor = Color.DarkGray;
             guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -74,7 +74,7 @@
             guna2Button3.ImageSize = new Size(40, 40);
             guna2Button3.Location = new Point(255, 599);
             guna2Button3.Name = "guna2Button3";
-            guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2Button3.Size = new Size(231, 64);
             guna2Button3.TabIndex = 116;
             guna2Button3.Text = "Save";
@@ -116,7 +116,7 @@
             // 
             guna2DateTimePicker1.BackColor = Color.White;
             guna2DateTimePicker1.Checked = true;
-            guna2DateTimePicker1.CustomizableEdges = customizableEdges7;
+            guna2DateTimePicker1.CustomizableEdges = customizableEdges3;
             guna2DateTimePicker1.FillColor = Color.White;
             guna2DateTimePicker1.Font = new Font("Century Gothic", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2DateTimePicker1.Format = DateTimePickerFormat.Long;
@@ -124,7 +124,7 @@
             guna2DateTimePicker1.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             guna2DateTimePicker1.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             guna2DateTimePicker1.Name = "guna2DateTimePicker1";
-            guna2DateTimePicker1.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            guna2DateTimePicker1.ShadowDecoration.CustomizableEdges = customizableEdges4;
             guna2DateTimePicker1.Size = new Size(320, 51);
             guna2DateTimePicker1.TabIndex = 112;
             guna2DateTimePicker1.Value = new DateTime(2024, 5, 4, 23, 29, 9, 731);
@@ -185,7 +185,7 @@
             // 
             comboBox1.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold);
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Donations", "Tithes", "Offerings", "Others" });
+            comboBox1.Items.AddRange(new object[] { "Utilities", "Salaries", "Maintenance", "Supplies", "Rent", "Travel & Transportation", "Events", "Donations", "Miscellaneous" });
             comboBox1.Location = new Point(38, 349);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(235, 31);
