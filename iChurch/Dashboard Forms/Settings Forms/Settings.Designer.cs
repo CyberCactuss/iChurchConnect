@@ -37,8 +37,6 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label1 = new Label();
             label2 = new Label();
             pictureBox1 = new PictureBox();
@@ -51,7 +49,6 @@
             guna2GradientButton3 = new Guna.UI2.WinForms.Guna2GradientButton();
             guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
-            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             label5 = new Label();
             textBox3 = new TextBox();
             guna2GradientButton4 = new Guna.UI2.WinForms.Guna2GradientButton();
@@ -129,9 +126,11 @@
             textBox2.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox2.Location = new Point(43, 464);
             textBox2.Name = "textBox2";
+            textBox2.PasswordChar = '•';
             textBox2.ReadOnly = true;
             textBox2.Size = new Size(230, 33);
             textBox2.TabIndex = 8;
+            textBox2.UseSystemPasswordChar = true;
             textBox2.TextChanged += textBox2_TextChanged;
             // 
             // guna2GradientButton1
@@ -236,21 +235,6 @@
             guna2Separator2.Size = new Size(915, 10);
             guna2Separator2.TabIndex = 23;
             // 
-            // guna2Button1
-            // 
-            guna2Button1.CustomizableEdges = customizableEdges7;
-            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.Font = new Font("Segoe UI", 9F);
-            guna2Button1.ForeColor = Color.White;
-            guna2Button1.Location = new Point(279, 464);
-            guna2Button1.Name = "guna2Button1";
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            guna2Button1.Size = new Size(39, 36);
-            guna2Button1.TabIndex = 24;
-            // 
             // label5
             // 
             label5.AutoSize = true;
@@ -280,7 +264,7 @@
             guna2GradientButton4.BorderColor = Color.White;
             guna2GradientButton4.BorderRadius = 22;
             guna2GradientButton4.BorderThickness = 3;
-            guna2GradientButton4.CustomizableEdges = customizableEdges9;
+            guna2GradientButton4.CustomizableEdges = customizableEdges7;
             guna2GradientButton4.DisabledState.BorderColor = Color.DarkGray;
             guna2GradientButton4.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2GradientButton4.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -294,7 +278,7 @@
             guna2GradientButton4.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             guna2GradientButton4.Location = new Point(553, 307);
             guna2GradientButton4.Name = "guna2GradientButton4";
-            guna2GradientButton4.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            guna2GradientButton4.ShadowDecoration.CustomizableEdges = customizableEdges8;
             guna2GradientButton4.Size = new Size(140, 47);
             guna2GradientButton4.TabIndex = 27;
             guna2GradientButton4.Text = "Update";
@@ -320,7 +304,6 @@
             Controls.Add(guna2GradientButton4);
             Controls.Add(textBox3);
             Controls.Add(label5);
-            Controls.Add(guna2Button1);
             Controls.Add(guna2Separator2);
             Controls.Add(guna2Separator1);
             Controls.Add(guna2GradientButton3);
@@ -356,7 +339,6 @@
         private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton3;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Label label5;
         private TextBox textBox3;
         private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton4;

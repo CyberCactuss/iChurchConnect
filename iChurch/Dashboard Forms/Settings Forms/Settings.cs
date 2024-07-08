@@ -1,27 +1,22 @@
 ﻿using iChurch.Dashboard_Forms.Settings_Forms;
 using iChurch.DBAccess.Connection;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.OleDb;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace ChurchSystem.Dashboard_Forms
 {
     public partial class Settings : Form
     {
-
         private AccessConnection dbConnection;
+
         public Settings()
         {
             InitializeComponent();
             dbConnection = new AccessConnection();
             DisplayWarningImageForEmptyGmail();
+            LoadAdminData(); // Load the Username and Password into the text boxes
         }
 
         private void DisplayWarningImageForEmptyGmail()
@@ -30,10 +25,10 @@ namespace ChurchSystem.Dashboard_Forms
             {
                 dbConnection.OpenConnection();
 
-                // Query to check if Gmail column is empty for Admin with ID 1
+                
                 string query = "SELECT Gmail FROM Admin WHERE ID = ?";
                 OleDbCommand command = new OleDbCommand(query, dbConnection.GetConnection());
-                command.Parameters.AddWithValue("@ID", 1); // Replace with actual admin ID
+                command.Parameters.AddWithValue("?", 1); 
 
                 OleDbDataReader reader = command.ExecuteReader();
                 if (reader.Read())
@@ -43,7 +38,7 @@ namespace ChurchSystem.Dashboard_Forms
 
                     if (string.IsNullOrEmpty(gmailValue))
                     {
-                        // Gmail is empty, display warning image
+                        
                         string imagePath = Path.Combine(Application.StartupPath, @"..\..\..\..\RelatedImages\warning.png");
                         if (File.Exists(imagePath))
                         {
@@ -54,7 +49,7 @@ namespace ChurchSystem.Dashboard_Forms
                             MessageBox.Show("Warning image not found!");
                         }
                     }
-                    // If Gmail is not empty, do nothing (or handle differently)
+                    
                 }
                 reader.Close();
             }
@@ -74,10 +69,10 @@ namespace ChurchSystem.Dashboard_Forms
             {
                 dbConnection.OpenConnection();
 
-                // Query to check if Gmail column is empty for Admin with ID 1
+                
                 string query = "SELECT Gmail FROM Admin WHERE ID = ?";
                 OleDbCommand command = new OleDbCommand(query, dbConnection.GetConnection());
-                command.Parameters.AddWithValue("@ID", 1); // Replace with actual admin ID
+                command.Parameters.AddWithValue("?", 1); 
 
                 OleDbDataReader reader = command.ExecuteReader();
                 if (reader.Read())
@@ -86,7 +81,7 @@ namespace ChurchSystem.Dashboard_Forms
 
                     if (string.IsNullOrEmpty(gmailValue))
                     {
-                        // Gmail is empty, prompt the user
+                        
                         MessageBox.Show("Please enter your Gmail account for verification purposes.", "Empty Gmail Account", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -102,38 +97,103 @@ namespace ChurchSystem.Dashboard_Forms
             }
         }
 
-
-        private void label1_Click(object sender, EventArgs e)
+        private void LoadAdminData()
         {
+            try
+            {
+                dbConnection.OpenConnection();
 
+                
+                string query = "SELECT Username, Password, Gmail FROM Admin WHERE ID = ?";
+                OleDbCommand command = new OleDbCommand(query, dbConnection.GetConnection());
+                command.Parameters.AddWithValue("?", 1); 
+
+                OleDbDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    textBox1.Text = reader["Username"].ToString();
+                    textBox2.Text = reader["Password"].ToString();
+                    textBox3.Text = reader["Gmail"].ToString();
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading admin data: {ex.Message}");
+            }
+            finally
+            {
+                dbConnection.CloseConnection();
+            }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e) // USERNMAE
+        private bool IsGmailSet()
         {
+            try
+            {
+                dbConnection.OpenConnection();
 
-        }
+                
+                string query = "SELECT Gmail FROM Admin WHERE ID = ?";
+                OleDbCommand command = new OleDbCommand(query, dbConnection.GetConnection());
+                command.Parameters.AddWithValue("?", 1); 
 
-        private void textBox2_TextChanged(object sender, EventArgs e) // PASSWORD
-        {
-
+                OleDbDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    string gmailValue = reader["Gmail"].ToString();
+                    return !string.IsNullOrEmpty(gmailValue); 
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error checking Gmail: {ex.Message}");
+            }
+            finally
+            {
+                dbConnection.CloseConnection();
+            }
+            return false;
         }
 
         private void guna2GradientButton3_Click(object sender, EventArgs e) // UPDATE BOTH
         {
-            UpdateBoth updateBoth = new UpdateBoth();
-            updateBoth.ShowDialog();
+            if (IsGmailSet())
+            {
+                UpdateBoth updateBoth = new UpdateBoth();
+                updateBoth.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("You must set your Gmail for verification purposes before updating both Username and Password.", "Gmail Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void guna2GradientButton1_Click(object sender, EventArgs e) // UPDATE USERNAME ONLY
         {
-            Username username = new Username();
-            username.ShowDialog();
+            if (IsGmailSet())
+            {
+                Username username = new Username();
+                username.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("You must set your Gmail for verification purposes before updating the Username.", "Gmail Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void guna2GradientButton2_Click(object sender, EventArgs e) // UPDATE PASSWORD ONLY
         {
-            Password password = new Password();
-            password.ShowDialog();
+            if (IsGmailSet())
+            {
+                Password password = new Password();
+                password.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("You must set your Gmail for verification purposes before updating the Password.", "Gmail Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void guna2GradientButton4_Click(object sender, EventArgs e)
@@ -142,19 +202,19 @@ namespace ChurchSystem.Dashboard_Forms
             gmail.ShowDialog();
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
+        private void label1_Click(object sender, EventArgs e) { }
 
-        }
+        private void textBox1_TextChanged(object sender, EventArgs e) // USERNAME
+        { }
+
+        private void textBox2_TextChanged(object sender, EventArgs e) // PASSWORD
+        { }
+
+        private void textBox3_TextChanged(object sender, EventArgs e) { }
 
         private void pictureBox2_Click(object sender, EventArgs e) // PICTURE
-        {
+        { }
 
-        }
-
-        private void Settings_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void Settings_Load(object sender, EventArgs e) { }
     }
 }

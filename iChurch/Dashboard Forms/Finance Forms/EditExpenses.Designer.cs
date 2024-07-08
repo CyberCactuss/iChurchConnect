@@ -328,6 +328,7 @@
             Controls.Add(label6);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "EditExpenses";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Edit Expenses";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Username));
             guna2GradientButton1 = new Guna.UI2.WinForms.Guna2GradientButton();
             textBox1 = new TextBox();
@@ -49,7 +49,7 @@
             guna2GradientButton1.BorderColor = Color.White;
             guna2GradientButton1.BorderRadius = 28;
             guna2GradientButton1.BorderThickness = 3;
-            guna2GradientButton1.CustomizableEdges = customizableEdges3;
+            guna2GradientButton1.CustomizableEdges = customizableEdges1;
             guna2GradientButton1.DisabledState.BorderColor = Color.DarkGray;
             guna2GradientButton1.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2GradientButton1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -63,10 +63,11 @@
             guna2GradientButton1.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             guna2GradientButton1.Location = new Point(24, 453);
             guna2GradientButton1.Name = "guna2GradientButton1";
-            guna2GradientButton1.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2GradientButton1.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2GradientButton1.Size = new Size(151, 58);
             guna2GradientButton1.TabIndex = 22;
             guna2GradientButton1.Text = "Update";
+            guna2GradientButton1.Click += guna2GradientButton1_Click;
             // 
             // textBox1
             // 
@@ -77,6 +78,7 @@
             textBox1.ReadOnly = true;
             textBox1.Size = new Size(228, 33);
             textBox1.TabIndex = 21;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label3
             // 
@@ -129,6 +131,7 @@
             textBox2.ReadOnly = true;
             textBox2.Size = new Size(228, 33);
             textBox2.TabIndex = 26;
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // Username
             // 

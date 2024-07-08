@@ -40,6 +40,7 @@
             label3 = new Label();
             textBox3 = new TextBox();
             label4 = new Label();
+            guna2CheckBox1 = new Guna.UI2.WinForms.Guna2CheckBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -49,9 +50,9 @@
             textBox2.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox2.Location = new Point(27, 358);
             textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
             textBox2.Size = new Size(228, 33);
             textBox2.TabIndex = 33;
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // label2
             // 
@@ -104,12 +105,13 @@
             guna2GradientButton1.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2GradientButton1.ForeColor = Color.White;
             guna2GradientButton1.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            guna2GradientButton1.Location = new Point(27, 609);
+            guna2GradientButton1.Location = new Point(27, 648);
             guna2GradientButton1.Name = "guna2GradientButton1";
             guna2GradientButton1.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2GradientButton1.Size = new Size(151, 58);
             guna2GradientButton1.TabIndex = 29;
             guna2GradientButton1.Text = "Update";
+            guna2GradientButton1.Click += guna2GradientButton1_Click;
             // 
             // textBox1
             // 
@@ -117,9 +119,9 @@
             textBox1.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox1.Location = new Point(27, 222);
             textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
             textBox1.Size = new Size(228, 33);
             textBox1.TabIndex = 28;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label3
             // 
@@ -138,9 +140,9 @@
             textBox3.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox3.Location = new Point(27, 510);
             textBox3.Name = "textBox3";
-            textBox3.ReadOnly = true;
             textBox3.Size = new Size(228, 33);
             textBox3.TabIndex = 35;
+            textBox3.TextChanged += textBox3_TextChanged;
             // 
             // label4
             // 
@@ -153,11 +155,31 @@
             label4.TabIndex = 34;
             label4.Text = "Confirm Password:";
             // 
+            // guna2CheckBox1
+            // 
+            guna2CheckBox1.AutoSize = true;
+            guna2CheckBox1.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
+            guna2CheckBox1.CheckedState.BorderRadius = 0;
+            guna2CheckBox1.CheckedState.BorderThickness = 0;
+            guna2CheckBox1.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
+            guna2CheckBox1.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2CheckBox1.Location = new Point(27, 585);
+            guna2CheckBox1.Name = "guna2CheckBox1";
+            guna2CheckBox1.Size = new Size(159, 26);
+            guna2CheckBox1.TabIndex = 38;
+            guna2CheckBox1.Text = "See Password";
+            guna2CheckBox1.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
+            guna2CheckBox1.UncheckedState.BorderRadius = 0;
+            guna2CheckBox1.UncheckedState.BorderThickness = 0;
+            guna2CheckBox1.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
+            guna2CheckBox1.CheckedChanged += guna2CheckBox1_CheckedChanged;
+            // 
             // Password
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(560, 698);
+            ClientSize = new Size(538, 738);
+            Controls.Add(guna2CheckBox1);
             Controls.Add(textBox3);
             Controls.Add(label4);
             Controls.Add(textBox2);
@@ -171,6 +193,7 @@
             Name = "Password";
             StartPosition = FormStartPosition.CenterScreen;
             Text = " Settings";
+            Load += Password_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -187,5 +210,6 @@
         private Label label3;
         private TextBox textBox3;
         private Label label4;
+        private Guna.UI2.WinForms.Guna2CheckBox guna2CheckBox1;
     }
 }
