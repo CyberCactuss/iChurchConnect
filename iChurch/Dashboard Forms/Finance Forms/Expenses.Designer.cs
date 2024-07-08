@@ -103,6 +103,7 @@
             guna2Button2.Text = "Delete";
             guna2Button2.TextAlign = HorizontalAlignment.Left;
             guna2Button2.TextOffset = new Point(42, 0);
+            guna2Button2.Click += guna2Button2_Click;
             // 
             // guna2Button1
             // 
@@ -126,7 +127,7 @@
             guna2Button1.Text = "Add";
             guna2Button1.TextAlign = HorizontalAlignment.Left;
             guna2Button1.TextOffset = new Point(47, 0);
-            guna2Button1.Click += guna2Button1_Click;
+            guna2Button1.Click += guna2Button1_Click_1;
             // 
             // guna2DataGridView1
             // 
@@ -202,6 +203,7 @@
             guna2DataGridView1.ThemeStyle.RowsStyle.Height = 47;
             guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            guna2DataGridView1.CellContentClick += guna2DataGridView1_CellContentClick;
             // 
             // ID
             // 
