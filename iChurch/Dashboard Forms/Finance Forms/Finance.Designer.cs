@@ -29,21 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Finance));
-            Guna.Charts.WinForms.ChartFont chartFont1 = new Guna.Charts.WinForms.ChartFont();
-            Guna.Charts.WinForms.ChartFont chartFont2 = new Guna.Charts.WinForms.ChartFont();
-            Guna.Charts.WinForms.ChartFont chartFont3 = new Guna.Charts.WinForms.ChartFont();
-            Guna.Charts.WinForms.ChartFont chartFont4 = new Guna.Charts.WinForms.ChartFont();
-            Guna.Charts.WinForms.Grid grid1 = new Guna.Charts.WinForms.Grid();
-            Guna.Charts.WinForms.Tick tick1 = new Guna.Charts.WinForms.Tick();
-            Guna.Charts.WinForms.ChartFont chartFont5 = new Guna.Charts.WinForms.ChartFont();
-            Guna.Charts.WinForms.Grid grid2 = new Guna.Charts.WinForms.Grid();
-            Guna.Charts.WinForms.Tick tick2 = new Guna.Charts.WinForms.Tick();
-            Guna.Charts.WinForms.ChartFont chartFont6 = new Guna.Charts.WinForms.ChartFont();
-            Guna.Charts.WinForms.Grid grid3 = new Guna.Charts.WinForms.Grid();
-            Guna.Charts.WinForms.PointLabel pointLabel1 = new Guna.Charts.WinForms.PointLabel();
-            Guna.Charts.WinForms.ChartFont chartFont7 = new Guna.Charts.WinForms.ChartFont();
-            Guna.Charts.WinForms.Tick tick3 = new Guna.Charts.WinForms.Tick();
-            Guna.Charts.WinForms.ChartFont chartFont8 = new Guna.Charts.WinForms.ChartFont();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -55,7 +40,6 @@
             textBox1 = new TextBox();
             label1 = new Label();
             label2 = new Label();
-            gunaChart1 = new Guna.Charts.WinForms.GunaChart();
             guna2GradientButton1 = new Guna.UI2.WinForms.Guna2GradientButton();
             guna2GradientButton2 = new Guna.UI2.WinForms.Guna2GradientButton();
             pictureBox4 = new PictureBox();
@@ -66,11 +50,14 @@
             label3 = new Label();
             textBox3 = new TextBox();
             pictureBox3 = new PictureBox();
+            gunaAreaDataset1 = new Guna.Charts.WinForms.GunaAreaDataset();
+            pictureBox6 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             SuspendLayout();
             // 
             // smallRoundPanel1
@@ -101,7 +88,7 @@
             // 
             pictureBox1.BackColor = Color.FromArgb(38, 90, 27);
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(101, 187);
+            pictureBox1.Location = new Point(91, 187);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(66, 60);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -114,10 +101,11 @@
             textBox1.BorderStyle = BorderStyle.None;
             textBox1.Font = new Font("Century Gothic", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox1.ForeColor = Color.White;
-            textBox1.Location = new Point(172, 187);
+            textBox1.Location = new Point(171, 187);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(156, 59);
+            textBox1.Size = new Size(177, 59);
             textBox1.TabIndex = 4;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label1
             // 
@@ -133,47 +121,14 @@
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.FromArgb(38, 90, 27);
-            label2.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(158, 268);
+            label2.Location = new Point(149, 264);
             label2.Name = "label2";
-            label2.Size = new Size(126, 28);
+            label2.Size = new Size(141, 32);
             label2.TabIndex = 10;
             label2.Text = "This Week";
-            // 
-            // gunaChart1
-            // 
-            chartFont1.FontName = "Arial";
-            gunaChart1.Legend.LabelFont = chartFont1;
-            gunaChart1.Location = new Point(42, 389);
-            gunaChart1.Name = "gunaChart1";
-            gunaChart1.Size = new Size(437, 297);
-            gunaChart1.TabIndex = 13;
-            chartFont2.FontName = "Arial";
-            chartFont2.Size = 12;
-            chartFont2.Style = Guna.Charts.WinForms.ChartFontStyle.Bold;
-            gunaChart1.Title.Font = chartFont2;
-            chartFont3.FontName = "Arial";
-            gunaChart1.Tooltips.BodyFont = chartFont3;
-            chartFont4.FontName = "Arial";
-            chartFont4.Size = 9;
-            chartFont4.Style = Guna.Charts.WinForms.ChartFontStyle.Bold;
-            gunaChart1.Tooltips.TitleFont = chartFont4;
-            gunaChart1.XAxes.GridLines = grid1;
-            chartFont5.FontName = "Arial";
-            tick1.Font = chartFont5;
-            gunaChart1.XAxes.Ticks = tick1;
-            gunaChart1.YAxes.GridLines = grid2;
-            chartFont6.FontName = "Arial";
-            tick2.Font = chartFont6;
-            gunaChart1.YAxes.Ticks = tick2;
-            gunaChart1.ZAxes.GridLines = grid3;
-            chartFont7.FontName = "Arial";
-            pointLabel1.Font = chartFont7;
-            gunaChart1.ZAxes.PointLabels = pointLabel1;
-            chartFont8.FontName = "Arial";
-            tick3.Font = chartFont8;
-            gunaChart1.ZAxes.Ticks = tick3;
+            label2.Click += label2_Click;
             // 
             // guna2GradientButton1
             // 
@@ -198,7 +153,7 @@
             guna2GradientButton1.Image = (Image)resources.GetObject("guna2GradientButton1.Image");
             guna2GradientButton1.ImageOffset = new Point(25, 0);
             guna2GradientButton1.ImageSize = new Size(50, 50);
-            guna2GradientButton1.Location = new Point(816, 411);
+            guna2GradientButton1.Location = new Point(439, 433);
             guna2GradientButton1.Name = "guna2GradientButton1";
             guna2GradientButton1.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2GradientButton1.Size = new Size(244, 110);
@@ -229,7 +184,7 @@
             guna2GradientButton2.Image = (Image)resources.GetObject("guna2GradientButton2.Image");
             guna2GradientButton2.ImageOffset = new Point(25, 0);
             guna2GradientButton2.ImageSize = new Size(50, 50);
-            guna2GradientButton2.Location = new Point(810, 557);
+            guna2GradientButton2.Location = new Point(379, 567);
             guna2GradientButton2.Name = "guna2GradientButton2";
             guna2GradientButton2.ShadowDecoration.CustomizableEdges = customizableEdges4;
             guna2GradientButton2.Size = new Size(258, 110);
@@ -240,9 +195,9 @@
             // pictureBox4
             // 
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(479, 373);
+            pictureBox4.Location = new Point(654, 346);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(339, 336);
+            pictureBox4.Size = new Size(410, 370);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 21;
             pictureBox4.TabStop = false;
@@ -261,14 +216,13 @@
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.FromArgb(1, 90, 154);
-            label5.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(485, 268);
+            label5.Location = new Point(479, 269);
             label5.Name = "label5";
-            label5.Size = new Size(132, 28);
+            label5.Size = new Size(148, 32);
             label5.TabIndex = 25;
             label5.Text = "This Month";
-            label5.Click += label5_Click;
             // 
             // textBox2
             // 
@@ -276,7 +230,7 @@
             textBox2.BorderStyle = BorderStyle.None;
             textBox2.Font = new Font("Century Gothic", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox2.ForeColor = Color.White;
-            textBox2.Location = new Point(502, 188);
+            textBox2.Location = new Point(500, 188);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(180, 59);
             textBox2.TabIndex = 24;
@@ -285,7 +239,7 @@
             // 
             pictureBox2.BackColor = Color.FromArgb(1, 90, 154);
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(431, 188);
+            pictureBox2.Location = new Point(422, 188);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(66, 60);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -296,11 +250,11 @@
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.FromArgb(235, 115, 0);
-            label3.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(822, 269);
+            label3.Location = new Point(816, 269);
             label3.Name = "label3";
-            label3.Size = new Size(114, 28);
+            label3.Size = new Size(128, 32);
             label3.TabIndex = 28;
             label3.Text = "This Year";
             // 
@@ -310,7 +264,7 @@
             textBox3.BorderStyle = BorderStyle.None;
             textBox3.Font = new Font("Century Gothic", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox3.ForeColor = Color.White;
-            textBox3.Location = new Point(834, 189);
+            textBox3.Location = new Point(827, 189);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(180, 59);
             textBox3.TabIndex = 27;
@@ -319,12 +273,28 @@
             // 
             pictureBox3.BackColor = Color.FromArgb(235, 115, 0);
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(763, 189);
+            pictureBox3.Location = new Point(754, 189);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(66, 60);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 26;
             pictureBox3.TabStop = false;
+            // 
+            // gunaAreaDataset1
+            // 
+            gunaAreaDataset1.BorderColor = Color.Empty;
+            gunaAreaDataset1.FillColor = Color.Empty;
+            gunaAreaDataset1.Label = "Area1";
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(68, 368);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(339, 336);
+            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox6.TabIndex = 29;
+            pictureBox6.TabStop = false;
             // 
             // Finance
             // 
@@ -341,7 +311,6 @@
             Controls.Add(pictureBox5);
             Controls.Add(guna2GradientButton2);
             Controls.Add(guna2GradientButton1);
-            Controls.Add(gunaChart1);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(textBox1);
@@ -350,6 +319,7 @@
             Controls.Add(smallRoundPanel2);
             Controls.Add(smallRoundPanel1);
             Controls.Add(pictureBox4);
+            Controls.Add(pictureBox6);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Finance";
             Text = "Finance";
@@ -359,6 +329,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -372,7 +343,6 @@
         private TextBox textBox1;
         private Label label1;
         private Label label2;
-        private Guna.Charts.WinForms.GunaChart gunaChart1;
         private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton1;
         private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton2;
         private PictureBox pictureBox4;
@@ -383,5 +353,7 @@
         private Label label3;
         private TextBox textBox3;
         private PictureBox pictureBox3;
+        private Guna.Charts.WinForms.GunaAreaDataset gunaAreaDataset1;
+        private PictureBox pictureBox6;
     }
 }
