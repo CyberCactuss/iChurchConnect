@@ -484,5 +484,10 @@ namespace ChurchSystem.Dashboard_Forms
             EventDetailsForm eventDetailsForm = new EventDetailsForm(selectedDate, panel5);
             eventDetailsForm.ShowDialog();
         }
+
+        private void dataGridViewEvents_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

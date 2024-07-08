@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewEvents));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pictureBox8 = new PictureBox();
             label8 = new Label();
             pictureBox2 = new PictureBox();
@@ -181,10 +181,10 @@
             // txtdescription
             // 
             txtdescription.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtdescription.Location = new Point(128, 453);
+            txtdescription.Location = new Point(128, 459);
             txtdescription.Multiline = true;
             txtdescription.Name = "txtdescription";
-            txtdescription.Size = new Size(762, 165);
+            txtdescription.Size = new Size(702, 141);
             txtdescription.TabIndex = 69;
             // 
             // txtvenue
@@ -276,7 +276,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Gray;
-            label7.Location = new Point(425, 73);
+            label7.Location = new Point(395, 80);
             label7.Name = "label7";
             label7.Size = new Size(178, 19);
             label7.TabIndex = 54;
@@ -286,7 +286,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(355, 33);
+            label2.Location = new Point(388, 37);
             label2.Name = "label2";
             label2.Size = new Size(168, 36);
             label2.TabIndex = 53;
@@ -297,30 +297,30 @@
             pictureBox7.BackColor = Color.Transparent;
             pictureBox7.BackgroundImage = (Image)resources.GetObject("pictureBox7.BackgroundImage");
             pictureBox7.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox7.Location = new Point(166, -9);
+            pictureBox7.Location = new Point(209, -14);
             pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(163, 144);
+            pictureBox7.Size = new Size(163, 151);
             pictureBox7.TabIndex = 58;
             pictureBox7.TabStop = false;
             // 
             // guna2Button2
             // 
-            guna2Button2.BorderColor = Color.FromArgb(16, 154, 248);
+            guna2Button2.BorderColor = Color.Goldenrod;
             guna2Button2.BorderRadius = 9;
             guna2Button2.BorderThickness = 2;
-            guna2Button2.CustomizableEdges = customizableEdges3;
+            guna2Button2.CustomizableEdges = customizableEdges1;
             guna2Button2.DisabledState.BorderColor = Color.DarkGray;
             guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             guna2Button2.FillColor = Color.White;
             guna2Button2.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2Button2.ForeColor = Color.FromArgb(16, 154, 248);
+            guna2Button2.ForeColor = Color.Goldenrod;
             guna2Button2.Image = (Image)resources.GetObject("guna2Button2.Image");
             guna2Button2.ImageOffset = new Point(-8, 0);
             guna2Button2.Location = new Point(729, 627);
             guna2Button2.Name = "guna2Button2";
-            guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2Button2.Size = new Size(161, 59);
             guna2Button2.TabIndex = 81;
             guna2Button2.Text = "Close";
@@ -376,8 +376,10 @@
             Controls.Add(label2);
             Controls.Add(pictureBox7);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ViewEvents";
-            Text = "ViewEvents";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = " View Events";
             Load += ViewEvents_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

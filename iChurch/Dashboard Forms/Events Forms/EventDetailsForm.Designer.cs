@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EventDetailsForm));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             label7 = new Label();
@@ -61,7 +61,6 @@
             label3 = new Label();
             panel2 = new Panel();
             panel1 = new Panel();
-            panel3 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -70,13 +69,12 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // guna2Button1
             // 
             guna2Button1.BorderRadius = 9;
-            guna2Button1.CustomizableEdges = customizableEdges5;
+            guna2Button1.CustomizableEdges = customizableEdges1;
             guna2Button1.DisabledState.BorderColor = Color.DarkGray;
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -88,7 +86,7 @@
             guna2Button1.ImageOffset = new Point(-8, 0);
             guna2Button1.Location = new Point(725, 627);
             guna2Button1.Name = "guna2Button1";
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2Button1.Size = new Size(161, 59);
             guna2Button1.TabIndex = 25;
             guna2Button1.Text = "Next";
@@ -100,7 +98,7 @@
             guna2Button2.BorderColor = Color.FromArgb(16, 154, 248);
             guna2Button2.BorderRadius = 9;
             guna2Button2.BorderThickness = 2;
-            guna2Button2.CustomizableEdges = customizableEdges7;
+            guna2Button2.CustomizableEdges = customizableEdges3;
             guna2Button2.DisabledState.BorderColor = Color.DarkGray;
             guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -112,7 +110,7 @@
             guna2Button2.ImageOffset = new Point(-8, 0);
             guna2Button2.Location = new Point(541, 627);
             guna2Button2.Name = "guna2Button2";
-            guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges4;
             guna2Button2.Size = new Size(161, 59);
             guna2Button2.TabIndex = 26;
             guna2Button2.Text = "Cancel";
@@ -124,7 +122,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Gray;
-            label7.Location = new Point(421, 67);
+            label7.Location = new Point(385, 71);
             label7.Name = "label7";
             label7.Size = new Size(178, 19);
             label7.TabIndex = 19;
@@ -134,7 +132,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(351, 27);
+            label2.Location = new Point(378, 29);
             label2.Name = "label2";
             label2.Size = new Size(197, 36);
             label2.TabIndex = 19;
@@ -145,9 +143,9 @@
             pictureBox7.BackColor = Color.Transparent;
             pictureBox7.BackgroundImage = (Image)resources.GetObject("pictureBox7.BackgroundImage");
             pictureBox7.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox7.Location = new Point(162, -15);
+            pictureBox7.Location = new Point(209, -16);
             pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(163, 144);
+            pictureBox7.Size = new Size(163, 146);
             pictureBox7.TabIndex = 29;
             pictureBox7.TabStop = false;
             // 
@@ -263,10 +261,10 @@
             // txtdescription
             // 
             txtdescription.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtdescription.Location = new Point(124, 447);
+            txtdescription.Location = new Point(124, 453);
             txtdescription.Multiline = true;
             txtdescription.Name = "txtdescription";
-            txtdescription.Size = new Size(762, 165);
+            txtdescription.Size = new Size(702, 150);
             txtdescription.TabIndex = 41;
             // 
             // txtvenue
@@ -364,19 +362,10 @@
             // panel1
             // 
             panel1.BackColor = Color.DodgerBlue;
-            panel1.Controls.Add(panel3);
             panel1.Location = new Point(-1, -7);
             panel1.Name = "panel1";
             panel1.Size = new Size(204, 710);
             panel1.TabIndex = 86;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.White;
-            panel3.Location = new Point(71, 142);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(848, 490);
-            panel3.TabIndex = 84;
             // 
             // EventDetailsForm
             // 
@@ -412,9 +401,10 @@
             Controls.Add(pictureBox7);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "EventDetailsForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "EventDetailsForm";
+            Text = " Event Details";
             Load += EventDetailsForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
@@ -424,7 +414,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -461,6 +450,5 @@
         private Label label3;
         private Panel panel2;
         private Panel panel1;
-        private Panel panel3;
     }
 }
