@@ -37,6 +37,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label1 = new Label();
             label2 = new Label();
             pictureBox1 = new PictureBox();
@@ -53,6 +55,7 @@
             textBox3 = new TextBox();
             guna2GradientButton4 = new Guna.UI2.WinForms.Guna2GradientButton();
             pictureBox2 = new PictureBox();
+            guna2GradientButton5 = new Guna.UI2.WinForms.Guna2GradientButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -209,7 +212,7 @@
             guna2GradientButton3.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2GradientButton3.ForeColor = Color.White;
             guna2GradientButton3.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            guna2GradientButton3.Location = new Point(36, 649);
+            guna2GradientButton3.Location = new Point(36, 644);
             guna2GradientButton3.Name = "guna2GradientButton3";
             guna2GradientButton3.ShadowDecoration.CustomizableEdges = customizableEdges6;
             guna2GradientButton3.Size = new Size(201, 47);
@@ -223,7 +226,7 @@
             guna2Separator1.FillThickness = 2;
             guna2Separator1.Location = new Point(-3, 155);
             guna2Separator1.Name = "guna2Separator1";
-            guna2Separator1.Size = new Size(915, 10);
+            guna2Separator1.Size = new Size(1094, 10);
             guna2Separator1.TabIndex = 22;
             // 
             // guna2Separator2
@@ -232,7 +235,7 @@
             guna2Separator2.FillThickness = 2;
             guna2Separator2.Location = new Point(-3, 600);
             guna2Separator2.Name = "guna2Separator2";
-            guna2Separator2.Size = new Size(915, 10);
+            guna2Separator2.Size = new Size(1094, 10);
             guna2Separator2.TabIndex = 23;
             // 
             // label5
@@ -294,12 +297,42 @@
             pictureBox2.TabStop = false;
             pictureBox2.Click += pictureBox2_Click;
             // 
+            // guna2GradientButton5
+            // 
+            guna2GradientButton5.Animated = true;
+            guna2GradientButton5.AnimatedGIF = true;
+            guna2GradientButton5.AutoRoundedCorners = true;
+            guna2GradientButton5.BorderColor = Color.White;
+            guna2GradientButton5.BorderRadius = 22;
+            guna2GradientButton5.BorderThickness = 3;
+            guna2GradientButton5.CustomizableEdges = customizableEdges9;
+            guna2GradientButton5.DisabledState.BorderColor = Color.DarkGray;
+            guna2GradientButton5.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2GradientButton5.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2GradientButton5.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            guna2GradientButton5.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2GradientButton5.FillColor = Color.Yellow;
+            guna2GradientButton5.FillColor2 = Color.FromArgb(255, 128, 0);
+            guna2GradientButton5.FocusedColor = Color.DodgerBlue;
+            guna2GradientButton5.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2GradientButton5.ForeColor = Color.White;
+            guna2GradientButton5.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            guna2GradientButton5.Image = (Image)resources.GetObject("guna2GradientButton5.Image");
+            guna2GradientButton5.Location = new Point(927, 102);
+            guna2GradientButton5.Name = "guna2GradientButton5";
+            guna2GradientButton5.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            guna2GradientButton5.Size = new Size(149, 47);
+            guna2GradientButton5.TabIndex = 29;
+            guna2GradientButton5.Text = "Refresh";
+            guna2GradientButton5.Click += guna2GradientButton5_Click;
+            // 
             // Settings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
-            ClientSize = new Size(909, 694);
+            ClientSize = new Size(1088, 694);
+            Controls.Add(guna2GradientButton5);
             Controls.Add(pictureBox2);
             Controls.Add(guna2GradientButton4);
             Controls.Add(textBox3);
@@ -343,5 +376,6 @@
         private TextBox textBox3;
         private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton4;
         private PictureBox pictureBox2;
+        private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton5;
     }
 }

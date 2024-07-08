@@ -55,7 +55,6 @@
             textBox2.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox2.Location = new Point(20, 352);
             textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
             textBox2.Size = new Size(228, 33);
             textBox2.TabIndex = 32;
             // 
@@ -96,7 +95,6 @@
             textBox1.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox1.Location = new Point(20, 212);
             textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
             textBox1.Size = new Size(228, 33);
             textBox1.TabIndex = 28;
             // 
@@ -117,7 +115,6 @@
             textBox3.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox3.Location = new Point(20, 811);
             textBox3.Name = "textBox3";
-            textBox3.ReadOnly = true;
             textBox3.Size = new Size(228, 33);
             textBox3.TabIndex = 41;
             // 
@@ -138,7 +135,6 @@
             textBox4.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox4.Location = new Point(20, 666);
             textBox4.Name = "textBox4";
-            textBox4.ReadOnly = true;
             textBox4.Size = new Size(228, 33);
             textBox4.TabIndex = 39;
             // 
@@ -159,7 +155,6 @@
             textBox5.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox5.Location = new Point(20, 540);
             textBox5.Name = "textBox5";
-            textBox5.ReadOnly = true;
             textBox5.Size = new Size(228, 33);
             textBox5.TabIndex = 37;
             // 

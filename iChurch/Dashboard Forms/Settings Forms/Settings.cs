@@ -16,7 +16,7 @@ namespace ChurchSystem.Dashboard_Forms
             InitializeComponent();
             dbConnection = new AccessConnection();
             DisplayWarningImageForEmptyGmail();
-            LoadAdminData(); // Load the Username and Password into the text boxes
+            LoadAdminData(); 
         }
 
         private void DisplayWarningImageForEmptyGmail()
@@ -209,5 +209,11 @@ namespace ChurchSystem.Dashboard_Forms
         { }
 
         private void Settings_Load(object sender, EventArgs e) { }
+
+        private void guna2GradientButton5_Click(object sender, EventArgs e)
+        {
+            DisplayWarningImageForEmptyGmail();
+            LoadAdminData();
+        }
     }
 }
