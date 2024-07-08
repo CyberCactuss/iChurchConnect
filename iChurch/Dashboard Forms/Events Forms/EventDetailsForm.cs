@@ -16,7 +16,7 @@ namespace ChurchSystem.Dashboard_Forms.Members
         private string startTime;
         private string endTime;
         private DateTime selectedDate;
-        private Color eventColor;
+        private string about;
         private Panel panel5;
         private ContextMenuStrip optionsMenu;
         private Button newButton;
@@ -25,12 +25,12 @@ namespace ChurchSystem.Dashboard_Forms.Members
 
 
 
-        public EventDetailsForm(DateTime selectedDate, Color eventColor, Panel panel5)
+        public EventDetailsForm(DateTime selectedDate, Panel panel5)
         {
             InitializeComponent();
 
             this.selectedDate = selectedDate;
-            this.eventColor = eventColor;
+
             this.panel5 = panel5;
 
             txtdate.Text = selectedDate.ToString("yyyy-MM-dd");
@@ -44,7 +44,7 @@ namespace ChurchSystem.Dashboard_Forms.Members
         {
             dbConnection = new AccessConnection();
 
-            string query = "SELECT EventName, EventType, Venue, [StartTime], [EndTime], [Date] " +
+            string query = "SELECT EventName, EventType, Venue, [StartTime], [EndTime], [Date], About " +
                            "FROM Events " +
                            "WHERE EventID = @eventId";
 
@@ -64,6 +64,7 @@ namespace ChurchSystem.Dashboard_Forms.Members
                     startTime = reader["StartTime"].ToString();
                     endTime = reader["EndTime"].ToString();
                     selectedDate = Convert.ToDateTime(reader["Date"]);
+                    about = reader["About"].ToString();
 
                     // Update UI with loaded event details
                     txtdate.Text = selectedDate.ToString("yyyy-MM-dd");
@@ -72,6 +73,7 @@ namespace ChurchSystem.Dashboard_Forms.Members
                     txtvenue.Text = eventVenue;
                     cmbtime.Text = startTime;
                     comboBox1.Text = endTime;
+                    txtdescription.Text = about;
 
                     DateTime startTimeValue;
                     if (DateTime.TryParseExact(startTime, "H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTimeValue))
@@ -106,7 +108,7 @@ namespace ChurchSystem.Dashboard_Forms.Members
 
 
 
-        public EventDetailsForm(string eventName, string eventType, string eventVenue, string startTime, string endTime, DateTime eventDate, Color eventColor, Panel panel5)
+        public EventDetailsForm(string eventName, string eventType, string eventVenue, string startTime, string endTime, DateTime eventDate, string about, Panel panel5)
         {
             InitializeComponent();
 
@@ -117,7 +119,8 @@ namespace ChurchSystem.Dashboard_Forms.Members
             this.startTime = startTime;
             this.endTime = endTime;
             this.selectedDate = eventDate;
-            this.eventColor = eventColor;
+            this.about = about;
+
             this.panel5 = panel5;
 
             txtdate.Text = selectedDate.ToString("yyyy-MM-dd");
@@ -126,7 +129,7 @@ namespace ChurchSystem.Dashboard_Forms.Members
             txtvenue.Text = eventVenue;
             cmbtime.Text = startTime;
             comboBox1.Text = endTime;
-
+            txtdescription .Text = about;
             DateTime startTimeValue;
             if (DateTime.TryParseExact(startTime, "H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTimeValue))
             {
@@ -161,7 +164,7 @@ namespace ChurchSystem.Dashboard_Forms.Members
 
         private void EventDetailsForm_Load(object sender, EventArgs e)
         {
-            panel4.BackColor = eventColor;
+
             SetSelectedDate(selectedDate);
         }
 
@@ -190,6 +193,7 @@ namespace ChurchSystem.Dashboard_Forms.Members
                 DateTime eventDate;
                 DateTime startTime;
                 DateTime endTime;
+                string about = txtdescription.Text;
 
                 // Check if date is valid
                 bool isValidDate = DateTime.TryParse(txtdate.Text, out eventDate);
@@ -212,11 +216,11 @@ namespace ChurchSystem.Dashboard_Forms.Members
                     MessageBox.Show("Invalid end time. Please check the value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                
+
                 dbConnection = new AccessConnection();
 
-                string query = "INSERT INTO Events (EventName, EventType, Venue, [StartTime], [EndTime], [Date]) " +
-                               "VALUES (@eventName, @eventType, @eventVenue, @startTime, @endTime, @eventDate)";
+                string query = "INSERT INTO Events (EventName, EventType, Venue, [StartTime], [EndTime], [Date], About) " +
+                               "VALUES (@eventName, @eventType, @eventVenue, @startTime, @endTime, @eventDate, @about)";
 
                 try
                 {
@@ -228,6 +232,7 @@ namespace ChurchSystem.Dashboard_Forms.Members
                     cmd.Parameters.AddWithValue("@startTime", startTime.ToString("h:mm tt")); // Store only time
                     cmd.Parameters.AddWithValue("@endTime", endTime.ToString("h:mm tt")); // Store only time
                     cmd.Parameters.AddWithValue("@eventDate", eventDate);
+                    cmd.Parameters.AddWithValue("@about", about);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -265,5 +270,17 @@ namespace ChurchSystem.Dashboard_Forms.Members
                 }
             }
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtdescription_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }
