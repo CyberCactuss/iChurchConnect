@@ -101,10 +101,10 @@
             guna2Button3.Image = (Image)resources.GetObject("guna2Button3.Image");
             guna2Button3.ImageOffset = new Point(-8, 0);
             guna2Button3.ImageSize = new Size(40, 40);
-            guna2Button3.Location = new Point(281, 617);
+            guna2Button3.Location = new Point(255, 599);
             guna2Button3.Name = "guna2Button3";
             guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2Button3.Size = new Size(179, 64);
+            guna2Button3.Size = new Size(231, 64);
             guna2Button3.TabIndex = 143;
             guna2Button3.Text = "Save";
             guna2Button3.TextOffset = new Point(-5, 0);
@@ -303,7 +303,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(797, 693);
+            ClientSize = new Size(786, 687);
             Controls.Add(label15);
             Controls.Add(label16);
             Controls.Add(textBox3);

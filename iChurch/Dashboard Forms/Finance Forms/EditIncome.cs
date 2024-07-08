@@ -33,12 +33,29 @@ namespace iChurch.Dashboard_Forms.Finance_Forms
         {
             try
             {
+                // Validate inputs
+                if (string.IsNullOrWhiteSpace(textBox1.Text) ||
+                    comboBox1.SelectedItem == null ||
+                    comboBox2.SelectedItem == null ||
+                    string.IsNullOrWhiteSpace(textBox2.Text))
+                {
+                    MessageBox.Show("Please fill all fields and select valid options.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int amount;
+                if (!int.TryParse(textBox1.Text, out amount))
+                {
+                    MessageBox.Show("Please enter a valid amount.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 AccessConnection dbConnection = new AccessConnection();
                 dbConnection.OpenConnection();
 
                 string query = "UPDATE Income SET [Amount] = ?, [Category] = ?, [PaymentMethod] = ?, [Person/Organization] = ?, [GivenDate] = ? WHERE [ID] = ?";
                 OleDbCommand cmd = new OleDbCommand(query, dbConnection.GetConnection());
-                cmd.Parameters.AddWithValue("?", int.Parse(textBox1.Text));
+                cmd.Parameters.AddWithValue("?", amount);
                 cmd.Parameters.AddWithValue("?", comboBox1.SelectedItem.ToString());
                 cmd.Parameters.AddWithValue("?", comboBox2.SelectedItem.ToString());
                 cmd.Parameters.AddWithValue("?", textBox2.Text);

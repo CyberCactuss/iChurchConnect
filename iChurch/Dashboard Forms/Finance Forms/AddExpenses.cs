@@ -28,7 +28,24 @@ namespace iChurch.Dashboard_Forms.Finance_Forms
         {
             try
             {
-                int amount = int.Parse(textBox1.Text);
+                // Validate inputs
+                if (string.IsNullOrWhiteSpace(textBox1.Text) ||
+                    comboBox1.SelectedItem == null ||
+                    comboBox2.SelectedItem == null ||
+                    string.IsNullOrWhiteSpace(textBox2.Text) ||
+                    string.IsNullOrWhiteSpace(textBox3.Text))
+                {
+                    MessageBox.Show("Please fill all fields and select valid options.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int amount;
+                if (!int.TryParse(textBox1.Text, out amount))
+                {
+                    MessageBox.Show("Please enter a valid amount.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 string category = comboBox1.SelectedItem.ToString();
                 string paymentMethod = comboBox2.SelectedItem.ToString();
                 string description = textBox2.Text;
