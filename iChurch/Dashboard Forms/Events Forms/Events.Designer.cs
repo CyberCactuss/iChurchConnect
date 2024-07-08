@@ -35,6 +35,9 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -58,6 +61,7 @@
             button3 = new Button();
             textBox2 = new TextBox();
             panel5 = new Panel();
+            pictureBox3 = new PictureBox();
             buttondelete = new Guna.UI2.WinForms.Guna2Button();
             buttonedit = new Guna.UI2.WinForms.Guna2Button();
             buttonview = new Guna.UI2.WinForms.Guna2Button();
@@ -73,6 +77,7 @@
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewEvents).BeginInit();
             panel6.SuspendLayout();
             guna2CustomGradientPanel1.SuspendLayout();
@@ -258,6 +263,7 @@
             // panel5
             // 
             panel5.BackColor = Color.White;
+            panel5.Controls.Add(pictureBox3);
             panel5.Controls.Add(buttondelete);
             panel5.Controls.Add(buttonedit);
             panel5.Controls.Add(buttonview);
@@ -267,6 +273,17 @@
             panel5.Size = new Size(767, 530);
             panel5.TabIndex = 24;
             panel5.Paint += panel5_Paint;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.BackColor = Color.Transparent;
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(271, 448);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(79, 71);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 1;
+            pictureBox3.TabStop = false;
             // 
             // buttondelete
             // 
@@ -346,10 +363,34 @@
             // 
             // dataGridViewEvents
             // 
+            dataGridViewEvents.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = Color.MediumOrchid;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewEvents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewEvents.BackgroundColor = Color.White;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.Purple;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(64, 0, 64);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridViewEvents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewEvents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.Plum;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.MediumOrchid;
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataGridViewEvents.DefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewEvents.Location = new Point(0, -1);
             dataGridViewEvents.Name = "dataGridViewEvents";
+            dataGridViewEvents.ReadOnly = true;
             dataGridViewEvents.Size = new Size(767, 439);
             dataGridViewEvents.TabIndex = 0;
             dataGridViewEvents.CellContentClick += dataGridViewEvents_CellContentClick;
@@ -407,19 +448,19 @@
             guna2CustomGradientPanel1.FillColor2 = Color.FromArgb(192, 0, 192);
             guna2CustomGradientPanel1.FillColor3 = Color.FromArgb(64, 0, 64);
             guna2CustomGradientPanel1.FillColor4 = Color.FromArgb(98, 53, 124);
-            guna2CustomGradientPanel1.Location = new Point(1, 339);
+            guna2CustomGradientPanel1.Location = new Point(1, 331);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            guna2CustomGradientPanel1.Size = new Size(314, 315);
+            guna2CustomGradientPanel1.Size = new Size(314, 323);
             guna2CustomGradientPanel1.TabIndex = 0;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(13, 11);
+            pictureBox1.Location = new Point(-17, -23);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(282, 304);
+            pictureBox1.Size = new Size(327, 368);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -444,7 +485,7 @@
             // 
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(27, 9);
+            pictureBox2.Location = new Point(27, 7);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(135, 129);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -492,6 +533,7 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewEvents).EndInit();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
@@ -534,5 +576,6 @@
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel2;
         private PictureBox pictureBox2;
         private Label label9;
+        private PictureBox pictureBox3;
     }
 }
