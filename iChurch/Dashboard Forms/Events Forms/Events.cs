@@ -42,16 +42,12 @@ namespace ChurchSystem.Dashboard_Forms
             dataGridViewEvents.MultiSelect = false; // Ensure only one row can be selected at a time
 
             refreshbtn.Click += refreshbtn_Click;
-
-
         }
 
 
         private void Events_Load(object sender, EventArgs e)
         {
             LoadEventsData();
-
-
         }
 
 
@@ -63,7 +59,7 @@ namespace ChurchSystem.Dashboard_Forms
 
                 dbConnection.OpenConnection();
 
-                string query = "SELECT ID, EventName, EventType, Venue, StartTime, EndTime, Date FROM Events";
+                string query = "SELECT ID, EventName, EventType, Venue, StartTime, EndTime, Date, About FROM Events";
                 OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, dbConnection.GetConnection());
                 DataTable dataTable = new DataTable();
                 dataAdapter.Fill(dataTable);
@@ -138,6 +134,15 @@ namespace ChurchSystem.Dashboard_Forms
                     Name = "Date",
                     Width = 70
                 });
+
+                dataGridViewEvents.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    HeaderText = "About",
+                    DataPropertyName = "About",
+                    Name = "About",
+                    Width = 150
+                });
+
 
                 dataGridViewEvents.AutoGenerateColumns = false;
                 dataGridViewEvents.DataSource = dataTable;
@@ -250,29 +255,18 @@ namespace ChurchSystem.Dashboard_Forms
 
         private void OpenEventDetailsForm(DateTime selectedDate)
         {
-            Color eventColor = GenerateRandomColor(); // Or any method you use to generate the event color
             Panel panel5 = this.panel5; // Assuming panel5 is a member of the class
-            EventDetailsForm eventDetailsForm = new EventDetailsForm(selectedDate, eventColor, panel5);
+            EventDetailsForm eventDetailsForm = new EventDetailsForm(selectedDate, panel5);
             eventDetailsForm.EventAdded += (s, e) => LoadEventsData();
             eventDetailsForm.ShowDialog();
         }
 
 
-        private Color GenerateRandomColor()
-        {
-            Random random = new Random();
-            int red = random.Next(128, 256);
-            int blue = random.Next(128, 256);
-            int green = random.Next(128, 256);
-
-            return Color.FromArgb(red, green, blue);
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
             DateTime selectedDate = DateTime.Today;
-            Color eventColor = GenerateRandomColor();
-            EventDetailsForm eventDetailsForm = new EventDetailsForm(selectedDate, eventColor, panel5);
+            EventDetailsForm eventDetailsForm = new EventDetailsForm(selectedDate, panel5);
             eventDetailsForm.ShowDialog();
         }
 
@@ -288,6 +282,7 @@ namespace ChurchSystem.Dashboard_Forms
                 string starttime = FormatTimeValue(selectedRow.Cells["StartTime"]);
                 string endtime = FormatTimeValue(selectedRow.Cells["EndTime"]);
                 DateTime eventDate = (DateTime)selectedRow.Cells["Date"].Value;
+                string about = selectedRow.Cells["About"].Value.ToString();
 
 
             }
@@ -322,23 +317,13 @@ namespace ChurchSystem.Dashboard_Forms
             }
         }
 
-        private void OpenEventDetailsForm(string eventName, string eventType, string venue, string startTime, string endTime, DateTime eventDate)
+        private void OpenEventDetailsForm(string eventName, string eventType, string venue, string startTime, string endTime, string about, DateTime eventDate)
         {
-            Color eventColor = GenerateRandomColor(); // Or any method you use to generate the event color
+
             Panel panel5 = this.panel5; // Assuming panel5 is a member of the class
-            EventDetailsForm eventDetailsForm = new EventDetailsForm(eventName, eventType, venue, startTime, endTime, eventDate, eventColor, panel5);
-
-
+            EventDetailsForm eventDetailsForm = new EventDetailsForm(eventName, eventType, venue, startTime, endTime, eventDate, about, panel5);
             eventDetailsForm.ShowDialog();
         }
-
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
 
         private void panel5_Paint(object sender, PaintEventArgs e)
         {
@@ -347,93 +332,8 @@ namespace ChurchSystem.Dashboard_Forms
 
         private void refreshbtn_Click(object sender, EventArgs e)
         {
-            string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "iChurchConnect.accdb");
-            string query = "SELECT ID, EventName, EventType, Venue, StartTime, EndTime, Date FROM Events";
-
-            try
-            {
-                using (OleDbConnection connection = new OleDbConnection($"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={dbPath};"))
-                {
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(query, connection);
-                    DataTable eventsTable = new DataTable();
-                    adapter.Fill(eventsTable);
-
-                    dataGridViewEvents.DataSource = eventsTable;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading events: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnview_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewEvents.SelectedRows.Count > 0)
-            {
-                DataGridViewRow selectedRow = dataGridViewEvents.SelectedRows[0];
-                string eventName = selectedRow.Cells["EventName"].Value.ToString();
-                string eventType = selectedRow.Cells["EventType"].Value.ToString();
-                string venue = selectedRow.Cells["Venue"].Value.ToString();
-                string startTime = FormatTimeValue(selectedRow.Cells["StartTime"]);
-                string endTime = FormatTimeValue(selectedRow.Cells["EndTime"]);
-                DateTime eventDate = (DateTime)selectedRow.Cells["Date"].Value;
-
-                // Open ViewEvents form with event details
-                Color eventColor = GenerateRandomColor(); // Generate a color for the event
-                ViewEvents viewEventsForm = new ViewEvents(eventName, eventType, venue, startTime, endTime, eventDate, eventColor);
-                viewEventsForm.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Please select an event to view.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-
-        private void btnedit_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewEvents.SelectedRows.Count > 0)
-            {
-                DataGridViewRow selectedRow = dataGridViewEvents.SelectedRows[0];
-                string eventName = selectedRow.Cells["EventName"].Value.ToString();
-                string eventType = selectedRow.Cells["EventType"].Value.ToString();
-                string venue = selectedRow.Cells["Venue"].Value.ToString();
-                string startTime = FormatTimeValue(selectedRow.Cells["StartTime"]);
-                string endTime = FormatTimeValue(selectedRow.Cells["EndTime"]);
-                DateTime eventDate = (DateTime)selectedRow.Cells["Date"].Value;
-
-
-                // Open EditEvent form with event details
-                Color eventColor = GenerateRandomColor();
-                EditEvent editeventForm = new EditEvent(eventName, eventType, venue, startTime, endTime, eventDate, eventColor);
-                editeventForm.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Please select an event to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void btndelete_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewEvents.SelectedRows.Count > 0)
-            {
-                DataGridViewRow selectedRow = dataGridViewEvents.SelectedRows[0];
-                int eventId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
-
-                DialogResult result = MessageBox.Show($"Are you sure you want to delete the event with ID {eventId}?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    DeleteEvent(eventId);
-                    LoadEventsData();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select an event to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            LoadEventsData();
+            MessageBox.Show("Events refreshed successfully!", "Refresh", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void DeleteEvent(int eventId)
@@ -456,6 +356,134 @@ namespace ChurchSystem.Dashboard_Forms
             catch (Exception ex)
             {
                 MessageBox.Show($"Error deleting event data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnnext_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonview_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewEvents.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridViewEvents.SelectedRows[0];
+                string eventName = selectedRow.Cells["EventName"].Value.ToString();
+                string eventType = selectedRow.Cells["EventType"].Value.ToString();
+                string venue = selectedRow.Cells["Venue"].Value.ToString();
+                string startTime = FormatTimeValue(selectedRow.Cells["StartTime"]);
+                string endTime = FormatTimeValue(selectedRow.Cells["EndTime"]);
+                DateTime eventDate = (DateTime)selectedRow.Cells["Date"].Value;
+                string about = selectedRow.Cells["About"].Value.ToString();
+
+
+                // Open ViewEvents form with event details
+
+                ViewEvents viewEventsForm = new ViewEvents(eventName, eventType, venue, startTime, endTime, eventDate, about);
+                viewEventsForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select an event to view.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void buttonedit_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewEvents.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridViewEvents.SelectedRows[0];
+
+                // Retrieve event details
+                string eventID = selectedRow.Cells["ID"].Value.ToString(); // Assuming the column name in your DataGridView is "EventID"
+                string eventName = selectedRow.Cells["EventName"].Value.ToString();
+                string eventType = selectedRow.Cells["EventType"].Value.ToString();
+                string venue = selectedRow.Cells["Venue"].Value.ToString();
+                string startTime = FormatTimeValue(selectedRow.Cells["StartTime"]);
+                string endTime = FormatTimeValue(selectedRow.Cells["EndTime"]);
+                DateTime eventDate = (DateTime)selectedRow.Cells["Date"].Value;
+                string about = selectedRow.Cells["About"].Value.ToString();
+
+                // Open EditEvent form with event details and EventID
+
+                EditEvent editeventForm = new EditEvent(eventID, eventName, eventType, venue, startTime, endTime, eventDate, about);
+                editeventForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select an event to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void buttondelete_Click_1(object sender, EventArgs e)
+        {
+            if (dataGridViewEvents.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridViewEvents.SelectedRows[0];
+                int eventId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
+
+                DialogResult result = MessageBox.Show($"Are you sure you want to delete the event with ID {eventId}?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    DeleteEvent(eventId);
+                    LoadEventsData();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an event to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            string filterText = textBox2.Text.Trim();
+
+            if (string.IsNullOrEmpty(filterText))
+            {
+                // If filter text is empty, show all rows
+                (dataGridViewEvents.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
+            }
+            else
+            {
+                // Apply filter to show only matching rows
+                string rowFilter = $"EventName LIKE '%{filterText}%' OR EventType LIKE '%{filterText}%' OR Venue LIKE '%{filterText}%'";
+                (dataGridViewEvents.DataSource as DataTable).DefaultView.RowFilter = rowFilter;
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string searchText = textBox2.Text.ToLower().Trim();
+            bool found = false;
+
+            foreach (DataGridViewRow row in dataGridViewEvents.Rows)
+            {
+                // Check if the row is visible (i.e., it matches the filter)
+                if (row.Visible)
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        if (cell.Value != null && cell.Value.ToString().ToLower().Contains(searchText))
+                        {
+                            row.Selected = true;
+                            dataGridViewEvents.FirstDisplayedScrollingRowIndex = row.Index;
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                if (found)
+                {
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                MessageBox.Show("No matching event found.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
