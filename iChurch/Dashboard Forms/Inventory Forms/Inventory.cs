@@ -140,7 +140,7 @@ namespace ChurchSystem.Dashboard_Forms
             }
         }
 
-        private void guna2Button2_Click(object sender, EventArgs e)
+        private void guna2Button2_Click(object sender, EventArgs e) // DELETE BUTTON
         {
             if (guna2DataGridView1.SelectedRows.Count > 0)
             {

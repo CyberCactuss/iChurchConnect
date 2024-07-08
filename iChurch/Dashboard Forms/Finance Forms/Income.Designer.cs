@@ -136,7 +136,7 @@
             dataGridViewCellStyle1.BackColor = Color.White;
             dataGridViewCellStyle1.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle1.ForeColor = Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = Color.CornflowerBlue;
+            dataGridViewCellStyle1.SelectionBackColor = Color.SeaGreen;
             dataGridViewCellStyle1.SelectionForeColor = Color.Black;
             guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             guna2DataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -155,10 +155,10 @@
             guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             guna2DataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, Amount, Category, PaymentMethod, Person, GivenDate });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.SkyBlue;
+            dataGridViewCellStyle3.BackColor = Color.LimeGreen;
             dataGridViewCellStyle3.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle3.ForeColor = Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = Color.CornflowerBlue;
+            dataGridViewCellStyle3.SelectionBackColor = Color.SeaGreen;
             dataGridViewCellStyle3.SelectionForeColor = Color.Black;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
@@ -201,6 +201,7 @@
             guna2DataGridView1.ThemeStyle.RowsStyle.Height = 47;
             guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            guna2DataGridView1.CellContentClick += guna2DataGridView1_CellContentClick;
             // 
             // ID
             // 
@@ -220,7 +221,7 @@
             // 
             // Category
             // 
-            Category.FillWeight = 55F;
+            Category.FillWeight = 70F;
             Category.HeaderText = "Category";
             Category.Name = "Category";
             Category.ReadOnly = true;
@@ -228,7 +229,7 @@
             // 
             // PaymentMethod
             // 
-            PaymentMethod.FillWeight = 60F;
+            PaymentMethod.FillWeight = 70F;
             PaymentMethod.HeaderText = "Payment Method";
             PaymentMethod.Name = "PaymentMethod";
             PaymentMethod.ReadOnly = true;
@@ -245,7 +246,7 @@
             // GivenDate
             // 
             GivenDate.FillWeight = 40F;
-            GivenDate.HeaderText = "GivenDate";
+            GivenDate.HeaderText = "Given Date";
             GivenDate.Name = "GivenDate";
             GivenDate.ReadOnly = true;
             GivenDate.Resizable = DataGridViewTriState.False;
