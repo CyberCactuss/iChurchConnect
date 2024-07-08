@@ -261,15 +261,6 @@ namespace ChurchSystem.Dashboard_Forms
             eventDetailsForm.ShowDialog();
         }
 
-
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            DateTime selectedDate = DateTime.Today;
-            EventDetailsForm eventDetailsForm = new EventDetailsForm(selectedDate, panel5);
-            eventDetailsForm.ShowDialog();
-        }
-
         private void dataGridViewEvents_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
@@ -487,5 +478,11 @@ namespace ChurchSystem.Dashboard_Forms
             }
         }
 
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            DateTime selectedDate = DateTime.Today;
+            EventDetailsForm eventDetailsForm = new EventDetailsForm(selectedDate, panel5);
+            eventDetailsForm.ShowDialog();
+        }
     }
 }
