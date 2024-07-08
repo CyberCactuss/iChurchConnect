@@ -15,13 +15,15 @@ namespace iChurch.Dashboard_Forms.Settings_Forms
         public string SendOTP(string emailTo)
         {
             string otp = GenerateOTP();
+            string userName = ExtractUserName(emailTo);
+
             using (MailMessage mail = new MailMessage())
             {
-                mail.From = new MailAddress(emailFrom);
+                mail.From = new MailAddress(emailFrom, "iChurchConnect Team");
                 mail.To.Add(emailTo);
                 mail.Subject = "Your OTP Code for iChurchConnect Verification";
-                mail.Body = GenerateBodyMessage(otp);
-                mail.IsBodyHtml = false;
+                mail.Body = GenerateBodyMessage(otp, userName);
+                mail.IsBodyHtml = true; // Enable HTML formatting
 
                 using (SmtpClient smtp = new SmtpClient(smtpAddress, portNumber))
                 {
@@ -32,32 +34,37 @@ namespace iChurch.Dashboard_Forms.Settings_Forms
             }
             return otp;
         }
-        private string GenerateBodyMessage(string otp)
+
+        private string GenerateBodyMessage(string otp, string userName)
         {
             return $@"
-Dear [User's Name],
+<p style='font-size: 14pt; font-family: Arial, sans-serif;'>Dear {userName},</p>
 
-Greetings from the iChurch.Connect team!
+<p style='font-size: 14pt; font-family: Arial, sans-serif;'>Greetings from the iChurch.Connect team!</p>
 
-To ensure the security of your account, please use the One-Time Password (OTP) provided below to complete your verification process. This code is valid for the next 10 minutes.
+<p style='font-size: 14pt; font-family: Arial, sans-serif;'>To ensure the security of your account, please use the One-Time Password (OTP) provided below to complete your verification process. This code is valid for the next 10 minutes.</p>
 
-Your OTP Code: {otp}
+<p style='font-size: 16pt; font-family: Arial, sans-serif; font-weight: bold;'>Your OTP Code: {otp}</p>
 
-Please do not share this code with anyone. If you did not request this OTP, please contact our support team immediately.
+<p style='font-size: 14pt; font-family: Arial, sans-serif;'>Please do not share this code with anyone. If you did not request this OTP, please contact our support team immediately.</p>
 
-Thank you for choosing iChurch.Connect. We are committed to keeping your account safe and secure.
+<p style='font-size: 14pt; font-family: Arial, sans-serif;'>Thank you for choosing iChurch.Connect. We are committed to keeping your account safe and secure.</p>
 
-Best regards,
-The iChurchConnect Team
+<p style='font-size: 14pt; font-family: Arial, sans-serif;'>Best regards,<br>The iChurchConnect Team</p>
 
----
+<hr>
 
-For support, please contact us at support@ichurchconnect.com
+<p style='font-size: 12pt; font-family: Arial, sans-serif;'>For support, please contact us at support@ichurchconnect.com</p>
 
-This is an automated message, please do not reply.
+<p style='font-size: 12pt; font-family: Arial, sans-serif;'>This is an automated message, please do not reply.</p>
 ";
         }
 
+        private string ExtractUserName(string email)
+        {
+            string userName = email.Split('@')[0];
+            return userName.Replace(".", " "); // Replace dots with spaces for better formatting
+        }
 
         private string GenerateOTP()
         {
