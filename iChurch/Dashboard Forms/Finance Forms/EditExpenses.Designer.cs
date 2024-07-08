@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditExpenses));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label15 = new Label();
             label16 = new Label();
             textBox3 = new TextBox();
@@ -90,7 +90,7 @@
             // guna2Button3
             // 
             guna2Button3.BorderRadius = 9;
-            guna2Button3.CustomizableEdges = customizableEdges5;
+            guna2Button3.CustomizableEdges = customizableEdges1;
             guna2Button3.DisabledState.BorderColor = Color.DarkGray;
             guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -101,9 +101,9 @@
             guna2Button3.Image = (Image)resources.GetObject("guna2Button3.Image");
             guna2Button3.ImageOffset = new Point(-8, 0);
             guna2Button3.ImageSize = new Size(40, 40);
-            guna2Button3.Location = new Point(269, 606);
+            guna2Button3.Location = new Point(281, 617);
             guna2Button3.Name = "guna2Button3";
-            guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2Button3.Size = new Size(179, 64);
             guna2Button3.TabIndex = 143;
             guna2Button3.Text = "Save";
@@ -145,7 +145,7 @@
             // 
             guna2DateTimePicker1.BackColor = Color.White;
             guna2DateTimePicker1.Checked = true;
-            guna2DateTimePicker1.CustomizableEdges = customizableEdges7;
+            guna2DateTimePicker1.CustomizableEdges = customizableEdges3;
             guna2DateTimePicker1.FillColor = Color.White;
             guna2DateTimePicker1.Font = new Font("Century Gothic", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2DateTimePicker1.Format = DateTimePickerFormat.Long;
@@ -153,7 +153,7 @@
             guna2DateTimePicker1.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             guna2DateTimePicker1.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             guna2DateTimePicker1.Name = "guna2DateTimePicker1";
-            guna2DateTimePicker1.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            guna2DateTimePicker1.ShadowDecoration.CustomizableEdges = customizableEdges4;
             guna2DateTimePicker1.Size = new Size(320, 51);
             guna2DateTimePicker1.TabIndex = 139;
             guna2DateTimePicker1.Value = new DateTime(2024, 5, 4, 23, 29, 9, 731);
