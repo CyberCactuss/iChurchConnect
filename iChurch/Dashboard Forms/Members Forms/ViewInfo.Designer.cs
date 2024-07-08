@@ -367,6 +367,7 @@
             guna2Button1.TabIndex = 66;
             guna2Button1.Text = "Print";
             guna2Button1.TextOffset = new Point(-5, 0);
+            guna2Button1.Click += guna2Button1_Click_1;
             // 
             // textBox5
             // 

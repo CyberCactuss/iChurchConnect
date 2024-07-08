@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,16 +15,20 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
 {
     public partial class ViewInfo : Form
     {
+        private PrintDocument printDocument1 = new PrintDocument();
+        private PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
         public ViewInfo()
         {
             InitializeComponent();
-            this.Load += new EventHandler(ViewInfo_Load); 
+            this.Load += new EventHandler(ViewInfo_Load);
+            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
         }
 
         public ViewInfo(int memberId)
         {
             InitializeComponent();
-            this.Load += new EventHandler(ViewInfo_Load); 
+            this.Load += new EventHandler(ViewInfo_Load);
+            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
             LoadMemberInfo(memberId);
         }
 
@@ -207,6 +212,60 @@ namespace ChurchSystem.Dashboard_Forms.MembersFiles
         private void pictureBox2_Click(object sender, EventArgs e) // PROFILE PICTURE
         {
 
+        }
+
+        private void guna2Button1_Click_1(object sender, EventArgs e) // PRINT BUTTON
+        {
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.ShowDialog();
+        }
+
+        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            
+            Font font = new Font("Arial", 16);
+            Brush brush = Brushes.Black;
+            int x = 100;
+            int y = 100;
+            int lineHeight = font.Height + 10;
+
+            
+            e.Graphics.DrawString("Member Information", new Font("Arial", 22, FontStyle.Bold), brush, x, y);
+            y += lineHeight;
+
+            e.Graphics.DrawString($"Full Name: {textBox1.Text}", font, brush, x, y);
+            y += lineHeight;
+
+            e.Graphics.DrawString($"Age: {textBox3.Text}", font, brush, x, y);
+            y += lineHeight;
+
+            e.Graphics.DrawString($"Sex: {textBox2.Text}", font, brush, x, y);
+            y += lineHeight;
+
+            e.Graphics.DrawString($"Contact: {textBox6.Text}", font, brush, x, y);
+            y += lineHeight;
+
+            e.Graphics.DrawString($"Email: {textBox7.Text}", font, brush, x, y);
+            y += lineHeight;
+
+            e.Graphics.DrawString($"Address: {textBox5.Text}", font, brush, x, y);
+            y += lineHeight;
+
+            e.Graphics.DrawString($"Birthday: {textBox4.Text}", font, brush, x, y);
+            y += lineHeight;
+
+            e.Graphics.DrawString($"Facebook Account: {textBox8.Text}", font, brush, x, y);
+            y += lineHeight;
+
+            
+            if (pictureBox2.Image != null)
+            {
+                int imageX = x + 400;
+                int imageY = 100;
+                int imageWidth = 220;
+                int imageHeight = 220;
+                e.Graphics.DrawImage(pictureBox2.Image, imageX, imageY, imageWidth, imageHeight);
+            }
         }
     }
 }
