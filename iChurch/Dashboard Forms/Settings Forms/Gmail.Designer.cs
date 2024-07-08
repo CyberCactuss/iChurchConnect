@@ -31,12 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gmail));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label1 = new Label();
             pictureBox1 = new PictureBox();
             guna2GradientButton1 = new Guna.UI2.WinForms.Guna2GradientButton();
             textBox1 = new TextBox();
             label3 = new Label();
             label2 = new Label();
+            guna2GradientButton2 = new Guna.UI2.WinForms.Guna2GradientButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -80,7 +83,7 @@
             guna2GradientButton1.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2GradientButton1.ForeColor = Color.White;
             guna2GradientButton1.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            guna2GradientButton1.Location = new Point(30, 352);
+            guna2GradientButton1.Location = new Point(23, 349);
             guna2GradientButton1.Name = "guna2GradientButton1";
             guna2GradientButton1.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2GradientButton1.Size = new Size(151, 58);
@@ -94,9 +97,9 @@
             textBox1.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox1.Location = new Point(23, 260);
             textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
             textBox1.Size = new Size(316, 33);
             textBox1.TabIndex = 26;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label3
             // 
@@ -120,11 +123,39 @@
             label2.TabIndex = 30;
             label2.Text = "Please enter a valid and working gmail account.";
             // 
+            // guna2GradientButton2
+            // 
+            guna2GradientButton2.Animated = true;
+            guna2GradientButton2.AnimatedGIF = true;
+            guna2GradientButton2.AutoRoundedCorners = true;
+            guna2GradientButton2.BorderColor = Color.White;
+            guna2GradientButton2.BorderRadius = 19;
+            guna2GradientButton2.BorderThickness = 3;
+            guna2GradientButton2.CustomizableEdges = customizableEdges3;
+            guna2GradientButton2.DisabledState.BorderColor = Color.DarkGray;
+            guna2GradientButton2.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2GradientButton2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2GradientButton2.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            guna2GradientButton2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2GradientButton2.FillColor = Color.DarkRed;
+            guna2GradientButton2.FillColor2 = Color.Red;
+            guna2GradientButton2.FocusedColor = Color.DodgerBlue;
+            guna2GradientButton2.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2GradientButton2.ForeColor = Color.White;
+            guna2GradientButton2.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            guna2GradientButton2.Location = new Point(343, 422);
+            guna2GradientButton2.Name = "guna2GradientButton2";
+            guna2GradientButton2.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2GradientButton2.Size = new Size(191, 41);
+            guna2GradientButton2.TabIndex = 31;
+            guna2GradientButton2.Text = "Remove Gmail Account";
+            // 
             // Gmail
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(560, 475);
+            Controls.Add(guna2GradientButton2);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
@@ -148,5 +179,6 @@
         private TextBox textBox1;
         private Label label3;
         private Label label2;
+        private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton2;
     }
 }

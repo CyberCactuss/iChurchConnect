@@ -71,7 +71,7 @@ namespace iChurch.Dashboard_Forms.Settings_Forms
 
                 reader.Close();
 
-                .
+            
                 string updateQuery = "UPDATE Admin SET [Username] = ? WHERE ID = ?";
                 OleDbCommand updateCommand = new OleDbCommand(updateQuery, dbConnection.GetConnection());
                 updateCommand.Parameters.AddWithValue("@Username", newUsername);
@@ -82,7 +82,7 @@ namespace iChurch.Dashboard_Forms.Settings_Forms
 
                 MessageBox.Show("Username updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                .
+                
                 this.Close();
             }
             catch (Exception ex)
