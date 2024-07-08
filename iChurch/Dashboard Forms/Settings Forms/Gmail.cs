@@ -1,4 +1,5 @@
-﻿using iChurch.DBAccess.Connection;
+﻿using ChurchSystem.Dashboard_Forms;
+using iChurch.DBAccess.Connection;
 using System;
 using System.Data.OleDb;
 using System.Net.Mail;
@@ -8,16 +9,19 @@ namespace iChurch.Dashboard_Forms.Settings_Forms
 {
     public partial class Gmail : Form
     {
-        private string generatedOTP;
+        private Settings parentSettingsForm;
 
-        public Gmail()
+        public Gmail(Settings parentSettingsForm)
         {
             InitializeComponent();
+            this.parentSettingsForm = parentSettingsForm;
         }
+
         public string EmailText
         {
             get { return textBox1.Text; }
         }
+
         private void guna2GradientButton1_Click(object sender, EventArgs e) // UPDATE BUTTON
         {
             string email = textBox1.Text;
@@ -25,7 +29,7 @@ namespace iChurch.Dashboard_Forms.Settings_Forms
             {
                 GmailService gmailService = new GmailService();
                 string generatedOTP = gmailService.SendOTP(email);
-                OTP otpForm = new OTP(generatedOTP, email);
+                OTP otpForm = new OTP(generatedOTP, email, this, parentSettingsForm);
                 otpForm.ShowDialog();
             }
             else
@@ -51,12 +55,6 @@ namespace iChurch.Dashboard_Forms.Settings_Forms
         {
         }
 
-        private void guna2GradientButton2_Click(object sender, EventArgs e) // REMOVE GMAIL ACC
-        {
-            RemoveGmailFromDatabase();
-            MessageBox.Show("Gmail account removed successfully.");
-        }
-
         private void RemoveGmailFromDatabase()
         {
             using (AccessConnection connection = new AccessConnection())
@@ -68,6 +66,13 @@ namespace iChurch.Dashboard_Forms.Settings_Forms
                     command.ExecuteNonQuery();
                 }
             }
+        }
+
+        private void guna2GradientButton2_Click_1(object sender, EventArgs e)
+        {
+            RemoveGmailFromDatabase();
+            MessageBox.Show("Gmail account removed successfully.");
+            parentSettingsForm.LoadAdminData(); // Refresh the Settings form data
         }
     }
 }

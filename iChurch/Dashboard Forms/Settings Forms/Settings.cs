@@ -25,10 +25,9 @@ namespace ChurchSystem.Dashboard_Forms
             {
                 dbConnection.OpenConnection();
 
-                
                 string query = "SELECT Gmail FROM Admin WHERE ID = ?";
                 OleDbCommand command = new OleDbCommand(query, dbConnection.GetConnection());
-                command.Parameters.AddWithValue("?", 1); 
+                command.Parameters.AddWithValue("?", 1);
 
                 OleDbDataReader reader = command.ExecuteReader();
                 if (reader.Read())
@@ -38,7 +37,6 @@ namespace ChurchSystem.Dashboard_Forms
 
                     if (string.IsNullOrEmpty(gmailValue))
                     {
-                        
                         string imagePath = Path.Combine(Application.StartupPath, @"..\..\..\..\RelatedImages\warning.png");
                         if (File.Exists(imagePath))
                         {
@@ -49,7 +47,6 @@ namespace ChurchSystem.Dashboard_Forms
                             MessageBox.Show("Warning image not found!");
                         }
                     }
-                    
                 }
                 reader.Close();
             }
@@ -69,10 +66,9 @@ namespace ChurchSystem.Dashboard_Forms
             {
                 dbConnection.OpenConnection();
 
-                
                 string query = "SELECT Gmail FROM Admin WHERE ID = ?";
                 OleDbCommand command = new OleDbCommand(query, dbConnection.GetConnection());
-                command.Parameters.AddWithValue("?", 1); 
+                command.Parameters.AddWithValue("?", 1);
 
                 OleDbDataReader reader = command.ExecuteReader();
                 if (reader.Read())
@@ -81,7 +77,6 @@ namespace ChurchSystem.Dashboard_Forms
 
                     if (string.IsNullOrEmpty(gmailValue))
                     {
-                        
                         MessageBox.Show("Please enter your Gmail account for verification purposes.", "Empty Gmail Account", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -97,16 +92,15 @@ namespace ChurchSystem.Dashboard_Forms
             }
         }
 
-        private void LoadAdminData()
+        public void LoadAdminData()
         {
             try
             {
                 dbConnection.OpenConnection();
 
-                
                 string query = "SELECT Username, Password, Gmail FROM Admin WHERE ID = ?";
                 OleDbCommand command = new OleDbCommand(query, dbConnection.GetConnection());
-                command.Parameters.AddWithValue("?", 1); 
+                command.Parameters.AddWithValue("?", 1);
 
                 OleDbDataReader reader = command.ExecuteReader();
                 if (reader.Read())
@@ -133,16 +127,15 @@ namespace ChurchSystem.Dashboard_Forms
             {
                 dbConnection.OpenConnection();
 
-                
                 string query = "SELECT Gmail FROM Admin WHERE ID = ?";
                 OleDbCommand command = new OleDbCommand(query, dbConnection.GetConnection());
-                command.Parameters.AddWithValue("?", 1); 
+                command.Parameters.AddWithValue("?", 1);
 
                 OleDbDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
                     string gmailValue = reader["Gmail"].ToString();
-                    return !string.IsNullOrEmpty(gmailValue); 
+                    return !string.IsNullOrEmpty(gmailValue);
                 }
                 reader.Close();
             }
@@ -198,7 +191,7 @@ namespace ChurchSystem.Dashboard_Forms
 
         private void guna2GradientButton4_Click(object sender, EventArgs e)
         {
-            Gmail gmail = new Gmail();
+            Gmail gmail = new Gmail(this); // Pass the current Settings form instance
             gmail.ShowDialog();
         }
 

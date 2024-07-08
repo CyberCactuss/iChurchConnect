@@ -149,6 +149,7 @@
             guna2GradientButton2.Size = new Size(191, 41);
             guna2GradientButton2.TabIndex = 31;
             guna2GradientButton2.Text = "Remove Gmail Account";
+            guna2GradientButton2.Click += guna2GradientButton2_Click_1;
             // 
             // Gmail
             // 

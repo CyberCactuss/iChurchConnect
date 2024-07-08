@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.OleDb;
 using System.Windows.Forms;
+using ChurchSystem.Dashboard_Forms;
 using iChurch.DBAccess.Connection;
 
 namespace iChurch.Dashboard_Forms.Settings_Forms
@@ -9,12 +10,16 @@ namespace iChurch.Dashboard_Forms.Settings_Forms
     {
         private string generatedOTP;
         private string email;
+        private Gmail parentGmailForm;
+        private Settings parentSettingsForm;
 
-        public OTP(string otp, string email)
+        public OTP(string otp, string email, Gmail parentGmailForm, Settings parentSettingsForm)
         {
             InitializeComponent();
             generatedOTP = otp;
             this.email = email;
+            this.parentGmailForm = parentGmailForm;
+            this.parentSettingsForm = parentSettingsForm;
         }
 
         private void guna2GradientButton1_Click(object sender, EventArgs e)
@@ -27,9 +32,11 @@ namespace iChurch.Dashboard_Forms.Settings_Forms
             string enteredOTP = guna2TextBox2.Text;
             if (enteredOTP == generatedOTP)
             {
-                UpdateDatabaseGmail(email); 
+                UpdateDatabaseGmail(email);
                 MessageBox.Show("OTP verified and Gmail updated successfully.");
+                parentGmailForm.Close();
                 this.Close();
+                parentSettingsForm.LoadAdminData(); // Refresh the Settings form data
             }
             else
             {
@@ -42,7 +49,7 @@ namespace iChurch.Dashboard_Forms.Settings_Forms
             using (AccessConnection connection = new AccessConnection())
             {
                 connection.OpenConnection();
-                string query = "UPDATE Admin SET Gmail = ? WHERE ID = 1"; 
+                string query = "UPDATE Admin SET Gmail = ? WHERE ID = 1";
                 using (OleDbCommand command = new OleDbCommand(query, connection.GetConnection()))
                 {
                     command.Parameters.AddWithValue("@Gmail", email);
