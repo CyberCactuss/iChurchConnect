@@ -39,6 +39,8 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
@@ -51,6 +53,7 @@
             ExpenseDate = new DataGridViewTextBoxColumn();
             EnteredBy = new DataGridViewTextBoxColumn();
             EnteredDate = new DataGridViewTextBoxColumn();
+            guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -119,7 +122,7 @@
             guna2Button1.Image = (Image)resources.GetObject("guna2Button1.Image");
             guna2Button1.ImageOffset = new Point(-36, 0);
             guna2Button1.ImageSize = new Size(22, 22);
-            guna2Button1.Location = new Point(86, 690);
+            guna2Button1.Location = new Point(236, 690);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges6;
             guna2Button1.Size = new Size(142, 52);
@@ -267,11 +270,34 @@
             EnteredDate.Name = "EnteredDate";
             EnteredDate.ReadOnly = true;
             // 
+            // guna2Button4
+            // 
+            guna2Button4.BorderRadius = 14;
+            guna2Button4.CustomizableEdges = customizableEdges7;
+            guna2Button4.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button4.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button4.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button4.FillColor = Color.DimGray;
+            guna2Button4.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2Button4.ForeColor = Color.White;
+            guna2Button4.Image = (Image)resources.GetObject("guna2Button4.Image");
+            guna2Button4.ImageOffset = new Point(-8, 0);
+            guna2Button4.Location = new Point(64, 690);
+            guna2Button4.Name = "guna2Button4";
+            guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            guna2Button4.Size = new Size(142, 52);
+            guna2Button4.TabIndex = 68;
+            guna2Button4.Text = "Print";
+            guna2Button4.TextOffset = new Point(-5, 0);
+            guna2Button4.Click += guna2Button4_Click;
+            // 
             // Expenses
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1072, 770);
+            Controls.Add(guna2Button4);
             Controls.Add(guna2DataGridView1);
             Controls.Add(guna2Button3);
             Controls.Add(guna2Button2);
@@ -297,5 +323,6 @@
         private DataGridViewTextBoxColumn ExpenseDate;
         private DataGridViewTextBoxColumn EnteredBy;
         private DataGridViewTextBoxColumn EnteredDate;
+        private Guna.UI2.WinForms.Guna2Button guna2Button4;
     }
 }

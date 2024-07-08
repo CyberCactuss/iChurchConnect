@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,11 +16,13 @@ namespace iChurch.Dashboard_Forms.Finance_Forms
 {
     public partial class Income : Form
     {
+        private DataTable incomeDataTable;
+
         public Income()
         {
             InitializeComponent();
             LoadIncomeData();
-        } 
+        }
 
         public void LoadIncomeData()
         {
@@ -30,8 +33,8 @@ namespace iChurch.Dashboard_Forms.Finance_Forms
 
                 string query = "SELECT [ID], [Amount], [Category], [PaymentMethod], [Person/Organization], [GivenDate] FROM Income";
                 OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, dbConnection.GetConnection());
-                DataTable dataTable = new DataTable();
-                dataAdapter.Fill(dataTable);
+                incomeDataTable = new DataTable();
+                dataAdapter.Fill(incomeDataTable);
 
                 guna2DataGridView1.AutoGenerateColumns = false;
 
@@ -44,7 +47,6 @@ namespace iChurch.Dashboard_Forms.Finance_Forms
                     HeaderText = "ID",
                     DataPropertyName = "ID",
                     Name = "ID"
-
                 });
 
                 guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn
@@ -89,7 +91,7 @@ namespace iChurch.Dashboard_Forms.Finance_Forms
                 guna2DataGridView1.Columns["Person/Organization"].FillWeight = 80;
                 guna2DataGridView1.Columns["GivenDate"].FillWeight = 40;
 
-                guna2DataGridView1.DataSource = dataTable;
+                guna2DataGridView1.DataSource = incomeDataTable;
 
                 dbConnection.CloseConnection();
             }
@@ -166,5 +168,76 @@ namespace iChurch.Dashboard_Forms.Finance_Forms
         {
 
         }
+
+        private void guna2Button4_Click(object sender, EventArgs e) // PRINT BUTTON
+        {
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
+            PrintPreviewDialog printPreviewDialog = new PrintPreviewDialog
+            {
+                Document = printDocument
+            };
+            printPreviewDialog.ShowDialog();
+        }
+
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            if (incomeDataTable == null || incomeDataTable.Rows.Count == 0)
+            {
+                MessageBox.Show("No data to print.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Calculate summary
+            decimal totalIncome = 0;
+            int recordCount = incomeDataTable.Rows.Count;
+
+            foreach (DataRow row in incomeDataTable.Rows)
+            {
+                if (row["Amount"] != DBNull.Value)
+                {
+                    totalIncome += Convert.ToDecimal(row["Amount"]);
+                }
+            }
+
+            // Define the font and the initial print position
+            Font font = new Font("Arial", 10);
+            float lineHeight = font.GetHeight(e.Graphics);
+            float x = e.MarginBounds.Left;
+            float y = e.MarginBounds.Top;
+
+            // Print header
+            e.Graphics.DrawString("Income Records", new Font("Arial", 14, FontStyle.Bold), Brushes.Black, x, y);
+            y += lineHeight * 2;
+
+            // Print column headers
+            e.Graphics.DrawString("ID", font, Brushes.Black, x, y);
+            e.Graphics.DrawString("Amount", font, Brushes.Black, x + 50, y);
+            e.Graphics.DrawString("Category", font, Brushes.Black, x + 150, y);
+            e.Graphics.DrawString("Payment Method", font, Brushes.Black, x + 300, y);
+            e.Graphics.DrawString("Person/Organization", font, Brushes.Black, x + 450, y);
+            e.Graphics.DrawString("Given Date", font, Brushes.Black, x + 600, y);
+            y += lineHeight;
+
+            // Print each record
+            foreach (DataRow row in incomeDataTable.Rows)
+            {
+                e.Graphics.DrawString(row["ID"].ToString(), font, Brushes.Black, x, y);
+                e.Graphics.DrawString(row["Amount"].ToString(), font, Brushes.Black, x + 50, y);
+                e.Graphics.DrawString(row["Category"].ToString(), font, Brushes.Black, x + 150, y);
+                e.Graphics.DrawString(row["PaymentMethod"].ToString(), font, Brushes.Black, x + 300, y);
+                e.Graphics.DrawString(row["Person/Organization"].ToString(), font, Brushes.Black, x + 450, y);
+                e.Graphics.DrawString(row["GivenDate"].ToString(), font, Brushes.Black, x + 600, y);
+                y += lineHeight;
+            }
+
+            // Print summary
+            y += lineHeight * 2;
+            e.Graphics.DrawString($"Total Records: {recordCount}", font, Brushes.Black, x, y);
+            y += lineHeight;
+            e.Graphics.DrawString($"Total Income: {totalIncome:C2}", font, Brushes.Black, x, y);
+        }
+
     }
+
 }

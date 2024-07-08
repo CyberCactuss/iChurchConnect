@@ -1,19 +1,17 @@
 ﻿using iChurch.DBAccess.Connection;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing.Printing;
 using System.Windows.Forms;
 
 namespace iChurch.Dashboard_Forms.Finance_Forms
 {
     public partial class Expenses : Form
     {
+        private DataTable expensesDataTable;
+
         public Expenses()
         {
             InitializeComponent();
@@ -29,8 +27,8 @@ namespace iChurch.Dashboard_Forms.Finance_Forms
 
                 string query = "SELECT [ID], [Amount], [Category], [PaymentMethod], [Description], [ExpenseDate], [EnteredBy], [EnteredDate] FROM Expenses";
                 OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, dbConnection.GetConnection());
-                DataTable dataTable = new DataTable();
-                dataAdapter.Fill(dataTable);
+                expensesDataTable = new DataTable();
+                dataAdapter.Fill(expensesDataTable);
 
                 guna2DataGridView1.AutoGenerateColumns = false;
 
@@ -94,7 +92,7 @@ namespace iChurch.Dashboard_Forms.Finance_Forms
                     Name = "EnteredDate"
                 });
 
-                guna2DataGridView1.DataSource = dataTable;
+                guna2DataGridView1.DataSource = expensesDataTable;
 
                 dbConnection.CloseConnection();
             }
@@ -174,6 +172,79 @@ namespace iChurch.Dashboard_Forms.Finance_Forms
             AddExpenses addExpenses = new AddExpenses();
             addExpenses.ShowDialog();
             LoadExpensesData();
+        }
+
+        private void guna2Button4_Click(object sender, EventArgs e) // PRINT BUTTON
+        {
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
+            PrintPreviewDialog printPreviewDialog = new PrintPreviewDialog
+            {
+                Document = printDocument
+            };
+            printPreviewDialog.ShowDialog();
+        }
+
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            if (expensesDataTable == null || expensesDataTable.Rows.Count == 0)
+            {
+                MessageBox.Show("No data to print.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Calculate summary
+            decimal totalExpenses = 0;
+            int recordCount = expensesDataTable.Rows.Count;
+
+            foreach (DataRow row in expensesDataTable.Rows)
+            {
+                if (row["Amount"] != DBNull.Value)
+                {
+                    totalExpenses += Convert.ToDecimal(row["Amount"]);
+                }
+            }
+
+            // Define the font and the initial print position
+            Font font = new Font("Arial", 10);
+            float lineHeight = font.GetHeight(e.Graphics);
+            float x = e.MarginBounds.Left;
+            float y = e.MarginBounds.Top;
+
+            // Print header
+            e.Graphics.DrawString("Expenses Records", new Font("Arial", 14, FontStyle.Bold), Brushes.Black, x, y);
+            y += lineHeight * 2;
+
+            // Print column headers
+            e.Graphics.DrawString("ID", font, Brushes.Black, x, y);
+            e.Graphics.DrawString("Amount", font, Brushes.Black, x + 50, y);
+            e.Graphics.DrawString("Category", font, Brushes.Black, x + 150, y);
+            e.Graphics.DrawString("Payment Method", font, Brushes.Black, x + 300, y);
+            e.Graphics.DrawString("Description", font, Brushes.Black, x + 450, y);
+            e.Graphics.DrawString("Expense Date", font, Brushes.Black, x + 600, y);
+            e.Graphics.DrawString("Entered By", font, Brushes.Black, x + 750, y);
+            e.Graphics.DrawString("Entered Date", font, Brushes.Black, x + 900, y);
+            y += lineHeight;
+
+            // Print each record
+            foreach (DataRow row in expensesDataTable.Rows)
+            {
+                e.Graphics.DrawString(row["ID"].ToString(), font, Brushes.Black, x, y);
+                e.Graphics.DrawString(row["Amount"].ToString(), font, Brushes.Black, x + 50, y);
+                e.Graphics.DrawString(row["Category"].ToString(), font, Brushes.Black, x + 150, y);
+                e.Graphics.DrawString(row["PaymentMethod"].ToString(), font, Brushes.Black, x + 300, y);
+                e.Graphics.DrawString(row["Description"].ToString(), font, Brushes.Black, x + 450, y);
+                e.Graphics.DrawString(row["ExpenseDate"].ToString(), font, Brushes.Black, x + 600, y);
+                e.Graphics.DrawString(row["EnteredBy"].ToString(), font, Brushes.Black, x + 750, y);
+                e.Graphics.DrawString(row["EnteredDate"].ToString(), font, Brushes.Black, x + 900, y);
+                y += lineHeight;
+            }
+
+            // Print summary
+            y += lineHeight * 2;
+            e.Graphics.DrawString($"Total Records: {recordCount}", font, Brushes.Black, x, y);
+            y += lineHeight;
+            e.Graphics.DrawString($"Total Expenses: {totalExpenses:C2}", font, Brushes.Black, x, y);
         }
     }
 }
